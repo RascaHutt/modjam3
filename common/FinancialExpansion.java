@@ -13,23 +13,32 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"coinpress"}, packetHandler = PacketHandler.class)
 public class FinancialExpansion {
-	@Instance(Reference.MOD_ID)
-	public static FinancialExpansion instance;
+	/*@Instance(Reference.MOD_ID)
+	public static FinancialExpansion instance;*/
 	
 	int nickelOreID;
+	
+	int coinPressID;
 	
 	int nickelIngotID;
 	
 	int nickelCoinID;
 	
 	public static Block blocknickelOre;
+	public static Block blockcoinPress;
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
+	
+	//OreGeneration oregeneration = new OreGeneration();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
@@ -58,9 +67,14 @@ public class FinancialExpansion {
 	@Init
 	public void load(FMLInitializationEvent event){
 		
+		//NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+		
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
 		registerBlock(blocknickelOre, "Nickel Ore", blocknickelOre.getUnlocalizedName());
+		
+		blockcoinPress = new BlockCoinPress(coinPressID);
+		registerBlock(blockcoinPress, "Coin Press", blockcoinPress.getItemIconName());
 		
 	//Ingot
 		itemnickelIngot = new ItemNickelIngot(nickelIngotID);
@@ -71,6 +85,7 @@ public class FinancialExpansion {
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
+		//GameRegistry.registerWorldGenerator(oregeneration);
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
