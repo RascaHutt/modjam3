@@ -19,12 +19,16 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class FinancialExpansion {
 	@Instance(Reference.MOD_ID)
 	public static FinancialExpansion instance;
+	
 	int nickelOreID;
 	
 	int nickelIngotID;
 	
+	int nickelCoinID;
+	
 	public static Block blocknickelOre;
 	public static Item itemnickelIngot;
+	public static Item itemnickelCoin;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
@@ -44,7 +48,8 @@ public class FinancialExpansion {
 		nickelOreID = config.get("Ore IDs", "Nickel Ore ID", 800).getInt();
 		
 		//Ingot
-		nickelIngotID = config.get("Ingot IDs", "Nickel Ingot ID", 1000).getInt();
+		nickelIngotID = config.get("Item IDs", "Nickel Ingot ID", 1000).getInt();
+		nickelCoinID = config.get("Item IDs", "Nickel Coin ID", 1001).getInt();
 		
 		
 	}
@@ -55,6 +60,14 @@ public class FinancialExpansion {
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
 		registerBlock(blocknickelOre, "Nickel Ore", blocknickelOre.getUnlocalizedName());
+		
+	//Ingot
+		itemnickelIngot = new ItemNickelIngot(nickelIngotID);
+		registerItem(itemnickelIngot, "Nickel Ingot", itemnickelIngot.getUnlocalizedName());
+		
+	//Other
+		itemnickelCoin = new ItemNickelCoin(nickelCoinID);
+		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
