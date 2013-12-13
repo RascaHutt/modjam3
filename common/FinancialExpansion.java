@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -68,6 +69,8 @@ public class FinancialExpansion {
 	//Other
 		itemnickelCoin = new ItemNickelCoin(nickelCoinID);
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
+		
+		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
