@@ -34,11 +34,11 @@ public class BlockCoinPress extends BlockContainer {
 			return true;
 		}else{
 			TileCoinPress tilecoinpress = (TileCoinPress)world.getBlockTileEntity(par1, par2, par3);
-<<<<<<< HEAD
+
 			//player.openGui(FinancialExpansion.instance, 1, world, par2, par3, par4);
-=======
+
 			player.openGui(FinancialExpansion.instance, 1, world, par2, par3, par4);
->>>>>>> af785883ccfd60be7d77ef2d69be568c6e3a79f4
+
 			return true;
 		}
 

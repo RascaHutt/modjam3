@@ -60,11 +60,11 @@ public class GuiCoinPress extends GuiContainer{
 	protected void drawLedgers(int mouseX, int mouseY) {
 		if (var5+142<mouseX && mouseX<var5+142+14 ){
 		int xPos = 8;
-<<<<<<< HEAD
-			String tooltip ="power";
-=======
 
->>>>>>> af785883ccfd60be7d77ef2d69be568c6e3a79f4
+			String tooltip ="power";
+
+
+
 			int startX = mouseX - ((this.width - this.xSize) / 2) + 12;
 			int startY = mouseY - ((this.height - this.ySize) / 2) - 12;
 
