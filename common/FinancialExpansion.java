@@ -14,6 +14,7 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import assets.modjam3.common.*;
@@ -65,6 +66,8 @@ public class FinancialExpansion {
 	
 	@Init
 	public void load(FMLInitializationEvent event){
+		
+		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
