@@ -67,14 +67,11 @@ public class FinancialExpansion {
 	@Init
 	public void load(FMLInitializationEvent event){
 		
-		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
 		registerBlock(blocknickelOre, "Nickel Ore", blocknickelOre.getUnlocalizedName());
 		
-		blockcoinPress = new BlockCoinPress(coinPressID);
-		registerBlock(blockcoinPress, "Coin Press", blockcoinPress.getItemIconName());
 		
 	//Ingot
 		itemnickelIngot = new ItemNickelIngot(nickelIngotID);
