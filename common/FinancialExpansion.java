@@ -78,6 +78,7 @@ public class FinancialExpansion {
 	public static void registerItem(Item item, String name, String unlocalizedName){
 		GameRegistry.registerItem(item, Reference.MOD_ID + unlocalizedName);
 		LanguageRegistry.addName(item, name);
+		
 	}
 }
 
