@@ -1,6 +1,6 @@
-package assets.Modjam3.client;
+package assets.modjam3.client;
 
-import assets.Modjam3.common.CommonProxy;
+import assets.modjam3.common.CommonProxy;
 
 public class ClientProxy extends CommonProxy{
 	

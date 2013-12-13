@@ -1,4 +1,4 @@
-package assets.Modjam3.common;
+package assets.modjam3.common;
 
 public class Reference {
 	
