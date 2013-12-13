@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class FinancialExpansion {
@@ -30,6 +31,8 @@ public class FinancialExpansion {
 	public static Block blocknickelOre;
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
+	
+	OreGeneration oregeneration = new OreGeneration();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
@@ -71,6 +74,7 @@ public class FinancialExpansion {
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
+		GameRegistry.registerWorldGenerator(oregeneration);
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
