@@ -172,7 +172,7 @@ public class CoinPressTile extends TileEntity implements IInventory{
                      }
              }
     }
-	private boolean canPress() {
+	public boolean canPress() {
 		// TODO Auto-generated method stub
 		  if (inventory[0] == null)
           {
@@ -223,5 +223,10 @@ public class CoinPressTile extends TileEntity implements IInventory{
 			abc++;
 		}
       }
+	  
+	  public int getCookProgressScaled(int par1)
+	    {
+	        return this.abc * par1 / 200;
+	    }
 	  
 }
