@@ -176,7 +176,7 @@ public class CoinPressTile extends TileEntity implements IInventory{
 		// TODO Auto-generated method stub
 		  if (inventory[0] == null)
           {
-			  
+			  	  abc = 0;
                   return false;
                   
           }

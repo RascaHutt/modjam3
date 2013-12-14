@@ -57,14 +57,12 @@ public class BlockCoinPress extends BlockContainer{
 	
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
 		return new CoinPressTile();
 	}
     public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
     	CoinPressTile tEntity = (CoinPressTile)par1World.getBlockTileEntity(x,y,z);
          if(tEntity != null){
-                 //player.displayGUIFurnace(tEntity);
                  player.openGui(FinancialExpansion.instance, 0, par1World, x, y, z);
  //        }
          return true;

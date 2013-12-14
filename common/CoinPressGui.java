@@ -16,7 +16,10 @@ public class CoinPressGui extends GuiContainer{
 	int yy;
 	int var5;
 	int var6;
+	int x;
+	int y;
 	int zz;
+	int progress;
 	public CoinPressGui(InventoryPlayer inventory,CoinPressTile gold) {
 		super(new CoinPressContainer(gold,inventory));
 		goldInventory = gold;
@@ -43,8 +46,11 @@ public class CoinPressGui extends GuiContainer{
 	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	         int var7=0;
 	   if(this.goldInventory.canPress()){
-		   
-		   
+		   System.out.println(this.goldInventory.abc);
+		   x = (this.width - this.xSize) /2 + 80;
+		   y = (this.height - this.ySize) /2 + 35;
+		   progress = (int) (0.26*this.goldInventory.abc);
+		   this.drawTexturedModalRect(this.x, this.y, 176, 14, this.progress, 16);
 	   }
       }
       
