@@ -105,6 +105,22 @@ public class FinancialExpansion {
 		 GameRegistry.registerTileEntity(StockViewerTile.class, "StockViewerTile");
 		networkRegisters();
 		market = new MarketManager();
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blocknickelBlock, 1),
+				new Object[]{
+			"nnn",
+			"nnn",
+			"nnn",
+			'n', FinancialExpansion.itemnickelIngot
+		});
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blockcoinPress, 1),
+				new Object[]{
+			"ibi",
+			"idi",
+			"ibi",
+			'i', Item.ingotIron,
+			'b', FinancialExpansion.blocknickelBlock, 
+			'd', Item.diamond,
+		});
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
