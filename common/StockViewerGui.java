@@ -1,11 +1,15 @@
 package assets.modjam3.common;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
 
 public class StockViewerGui extends GuiContainer{
+	int var5;
+	int var6;
 
 	public StockViewerGui(InventoryPlayer inventory,StockViewerTile gold) {
 		super(new StockViewerContainer(gold,inventory));
@@ -15,13 +19,22 @@ public class StockViewerGui extends GuiContainer{
 	  protected void drawGuiContainerForegroundLayer(int par1, int par2)
       {
                fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xffffff);
-               this.fontRenderer.drawString("Stock Viewer", 66, 6, 4210752);
+               this.fontRenderer.drawString("Stock Viewer", 51, 6, 4210752);
       }
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-		// TODO Auto-generated method stub
-		
-	}
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    {
+  	  	 int k = (this.width - this.xSize) / 2;
+  	  	 int l = (this.height - this.ySize) / 2;
+	         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	         this.mc.renderEngine.bindTexture(DefaultProps.STOCK_VIEWER_GUI);
+	         var5 = (this.width - this.xSize) / 2;
+	         var6 = (this.height - this.ySize) / 2;
+
+	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+	         int var7=0;
+    }
+    
 
 }
