@@ -25,7 +25,6 @@ public class BlockCoinPress extends BlockContainer{
 		setCreativeTab(CreativeTabs.tabBlock);
 		setHardness(3);
 	}
-	private CoinPressTile goldInventory;
 	@SideOnly(Side.CLIENT)
 	private Icon side, bottom, top, front, frontoff;
 	

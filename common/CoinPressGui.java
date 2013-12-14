@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class CoinPressGui extends GuiContainer{
-	private CoinPressTile goldInventory;
+	private CoinPressTile coinpressTile;
 	public int var9=0;
 	World world;
 	int xx;
@@ -20,9 +20,9 @@ public class CoinPressGui extends GuiContainer{
 	int y;
 	int zz;
 	int progress;
-	public CoinPressGui(InventoryPlayer inventory,CoinPressTile gold) {
-		super(new CoinPressContainer(gold,inventory));
-		goldInventory = gold;
+	public CoinPressGui(InventoryPlayer inventory,CoinPressTile tile) {
+		super(new CoinPressContainer(tile,inventory));
+		coinpressTile = tile;
 	}
 
 	  protected void drawGuiContainerForegroundLayer(int par1, int par2)
@@ -45,11 +45,11 @@ public class CoinPressGui extends GuiContainer{
 
 	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	         int var7=0;
-	   if(this.goldInventory.canPress()){
-		   System.out.println(this.goldInventory.abc);
+	   if(this.coinpressTile.canPress()){
+		   System.out.println(this.coinpressTile.abc);
 		   x = (this.width - this.xSize) /2 + 80;
 		   y = (this.height - this.ySize) /2 + 35;
-		   progress = (int) (0.26*this.goldInventory.abc);
+		   progress = (int) (0.26*this.coinpressTile.abc);
 		   this.drawTexturedModalRect(this.x, this.y, 176, 14, this.progress, 16);
 	   }
       }
