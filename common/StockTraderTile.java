@@ -10,7 +10,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	public int pressTime = 0;
 	int abc = 0;
 	public StockTraderTile(){
-		 this.inventory = new ItemStack[27];
+		 this.inventory = new ItemStack[1];
 	}
 	@Override
 	public int getSizeInventory() {
@@ -24,26 +24,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 		  return this.inventory[i];
 	}
 
-	/*@Override
-	public ItemStack decrStackSize(int slotIndex, int amount) {
-		// TODO Auto-generated method stub
-		  ItemStack stack = getStackInSlot(slotIndex);
-          
-          
-          if(stack != null){
-         
-                  if(stack.stackSize <= amount){
-                          setInventorySlotContents(slotIndex, null);
-                  }
-                  else{
-                          stack = stack.splitStack(amount);
-                          if(stack.stackSize == 0){
-                                  setInventorySlotContents(slotIndex, null);
-                          }
-                  }
-          }
-          return stack;
-	}*/
+	
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slotIndex) {
@@ -151,14 +132,34 @@ public class StockTraderTile extends TileEntity implements IInventory{
       {
 	
       }
+	  @Override
+		public ItemStack decrStackSize(int slotIndex, int amount) {
+			// TODO Auto-generated method stub
+			  ItemStack stack = getStackInSlot(slotIndex);
+	          
+	          
+	          if(stack != null){
+	         
+	                  if(stack.stackSize <= amount){
+	                          setInventorySlotContents(slotIndex, null);
+	                  }
+	                  else{
+	                          stack = stack.splitStack(amount);
+	                          if(stack.stackSize == 0){
+	                                  setInventorySlotContents(slotIndex, null);
+	                          }
+	                  }
+	          }
+	          return stack;
+		}
 @Override
-public ItemStack decrStackSize(int i, int j) {
-	// TODO Auto-generated method stub
-	return null;
-}
-@Override
-public void setInventorySlotContents(int i, ItemStack itemstack) {
-	// TODO Auto-generated method stub
+public void setInventorySlotContents(int slot, ItemStack stack){ 
+	   this.inventory[slot] = stack;
+    
+    if(stack != null && stack.stackSize > getInventoryStackLimit()){
+            stack.stackSize = getInventoryStackLimit();
+    }
 	
 }
+
 }
