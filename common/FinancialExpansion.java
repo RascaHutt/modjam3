@@ -28,15 +28,16 @@ public class FinancialExpansion {
 	int nickelOreID;
 	
 	int coinPressID;
-	
+	int stockViewerID;
 	int nickelIngotID;
 	
 	int nickelCoinID;
-	
+	public MarketManager market;
 	
 	
 	public static Block blocknickelOre;
 	public static Block blockcoinPress;
+	public static Block blockstockViewer;
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
 	
@@ -58,9 +59,8 @@ public class FinancialExpansion {
 		config.load();
 		
 		//Block
-		coinPressID = config.get("Coin Press IDs", "Coin Press ID", 700).getInt();
-		
-		//Ore
+		coinPressID = config.get("Machine IDs", "Coin Press ID", 700).getInt();
+		stockViewerID =config.get("Machine IDs", "StockViewer  ID", 701).getInt();
 		nickelOreID = config.get("Ore IDs", "Nickel Ore ID", 800).getInt();
 		
 		//Ingot
@@ -76,7 +76,8 @@ public class FinancialExpansion {
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
-		
+		blockstockViewer = new BlockStockViewer(stockViewerID);
+		registerBlock(blockstockViewer,"Stock Viewer", blockstockViewer.getUnlocalizedName());
 		//Tiles
 		
 	//Ore
@@ -96,6 +97,7 @@ public class FinancialExpansion {
 		GameRegistry.registerWorldGenerator(oregeneration);
 		 GameRegistry.registerTileEntity(CoinPressTile.class, "CoinPressTile");
 		networkRegisters();
+		market = new MarketManager();
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
