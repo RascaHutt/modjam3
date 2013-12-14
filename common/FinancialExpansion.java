@@ -39,11 +39,11 @@ public class FinancialExpansion {
 	public static Block blocknickelOre;
 	public static Block blockcoinPress;
 	public static Block blockstockViewer;
-<<<<<<< HEAD
+
 	public static Block blocknickelBlock;
-=======
+
 	public static Block blockstockTrader;
->>>>>>> Started on sell gui
+
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
 	
@@ -68,12 +68,12 @@ public class FinancialExpansion {
 		coinPressID = config.get("Machine IDs", "Coin Press ID", 700).getInt();
 		stockViewerID =config.get("Machine IDs", "StockViewer  ID", 701).getInt();
 		nickelOreID = config.get("Ore IDs", "Nickel Ore ID", 800).getInt();
-<<<<<<< HEAD
+
 		nickelBlockID=config.get("Other IDs", "Nickel Block ID", 801).getInt();
 		
-=======
+
 		stockTraderID = config.get("Machine IDs", "StockTrader  ID", 702).getInt();
->>>>>>> Started on sell gui
+
 		//Ingot
 		nickelIngotID = config.get("Item IDs", "Nickel Ingot ID", 1000).getInt();
 		nickelCoinID = config.get("Item IDs", "Nickel Coin ID", 1001).getInt();
