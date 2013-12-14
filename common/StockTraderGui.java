@@ -87,20 +87,19 @@ public void initGui(){
 }*/
 public Packet packet(){
 	Random random = new Random();
-	int randomInt1 = random.nextInt();
-	int randomInt2 = random.nextInt();
+	
 
 	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 	DataOutputStream outputStream = new DataOutputStream(bos);
 	try {
-	        outputStream.writeInt(randomInt1);
-	        outputStream.writeInt(randomInt2);
+	        outputStream.writeUTF(text);
+	       outputStream.writeBoolean(false);
 	} catch (Exception ex) {
 	        ex.printStackTrace();
 	}
 
 	Packet250CustomPayload packet = new Packet250CustomPayload();
-	packet.channel = "GenericRandom";
+	packet.channel = "stocktrader";
 	packet.data = bos.toByteArray();
 	packet.length = bos.size();
 	return packet;
