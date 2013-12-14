@@ -1,5 +1,7 @@
 package assets.modjam3.common;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -13,7 +15,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	public int pressTime = 0;
 	int abc = 0;
 	public StockViewerTile(){
-		 this.inventory = new ItemStack[2];
+		 this.inventory = new ItemStack[27];
 	}
 	@Override
 	public int getSizeInventory() {
@@ -152,7 +154,15 @@ public class StockViewerTile extends TileEntity implements IInventory{
   
 	  public void updateEntity()
       {
-	
+	int i=0;
+		
+		for (Listing list:FinancialExpansion.instance.market.listings){
+			
+		if (FinancialExpansion.instance.market.listings[i]!=null)
+			inventory[i]=FinancialExpansion.instance.market.listings[i].items;
+		//inventory[1]=FinancialExpansion.instance.market.displaySatck(1);
+		i++;
+		}
       }
 @Override
 public ItemStack decrStackSize(int i, int j) {

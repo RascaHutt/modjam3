@@ -1,5 +1,7 @@
 package assets.modjam3.common;
 
+import java.io.IOException;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,8 +29,9 @@ public class BlockStockViewer extends BlockContainer{
          if(tEntity != null){
                  //player.displayGUIFurnace(tEntity);
                  player.openGui(FinancialExpansion.instance, 1, par1World, x, y, z);
-                 FinancialExpansion.instance.market.listTrade(new ItemStack(Block.cobblestone), 100, 1, player);
- //        }
+                 if (par1World.isRemote!=true)
+                	 FinancialExpansion.instance.market.listTrade(new ItemStack(Block.blockIron), 100, true, player);
+        
          return true;
  }
          return false;

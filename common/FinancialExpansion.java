@@ -96,6 +96,7 @@ public class FinancialExpansion {
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 		GameRegistry.registerWorldGenerator(oregeneration);
 		 GameRegistry.registerTileEntity(CoinPressTile.class, "CoinPressTile");
+		 GameRegistry.registerTileEntity(StockViewerTile.class, "StockViewerTile");
 		networkRegisters();
 		market = new MarketManager();
 	}
