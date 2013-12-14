@@ -66,8 +66,8 @@ public void initGui(){
 	            {
 	                System.out.println("test");
 	                if (Integer.getInteger(text) != null)
-	                	tile.getStackInSlot(0), Integer.valueOf(text), false, player);
-	                PacketDispatcher.sendPacketToServer(packet);
+	                	//tile.getStackInSlot(0), Integer.valueOf(text), false, player);
+	                PacketDispatcher.sendPacketToServer(packet());
 	            }
 	            else if (par1GuiButton.id == 0)
 	            {
