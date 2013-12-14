@@ -24,7 +24,7 @@ import assets.modjam3.common.*;
 public class FinancialExpansion {
 	@Instance(Reference.MOD_ID)
 	public static FinancialExpansion instance;
-	
+	 private GuiHandler guiHandler = new GuiHandler();
 	int nickelOreID;
 	
 	int coinPressID;
@@ -92,6 +92,8 @@ public class FinancialExpansion {
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 		GameRegistry.registerWorldGenerator(oregeneration);
+		
+		networkRegisters();
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
@@ -104,5 +106,8 @@ public class FinancialExpansion {
 		LanguageRegistry.addName(item, name);
 		
 	}
+	 public void networkRegisters(){
+         NetworkRegistry.instance().registerGuiHandler(instance, guiHandler);
+ }
 }
 
