@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 public class CoinPressTile extends TileEntity implements IInventory{
 	private ItemStack[] inventory;
 	public CoinPressTile(){
-		 this.inventory = new ItemStack[1];
+		 this.inventory = new ItemStack[2];
 	}
 	@Override
 	public int getSizeInventory() {
@@ -146,4 +146,5 @@ public class CoinPressTile extends TileEntity implements IInventory{
            
             tagCompound.setTag("Inventory", itemList);
     }
+    
 }

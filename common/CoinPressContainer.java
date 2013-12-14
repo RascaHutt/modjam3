@@ -1,5 +1,6 @@
 package assets.modjam3.common;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,7 +13,16 @@ public class CoinPressContainer extends Container {
 	public CoinPressContainer(CoinPressTile tile_entity, InventoryPlayer player_inventory){
 		this.tile_entity = tile_entity;
 		int o = 0;
-		addSlotToContainer(new Slot(tile_entity, o, 8*18, 18*18));
+		int p=0;
+		 for(int q = 0; q <2; q++){
+             
+            
+            
+             addSlotToContainer(new Slot(tile_entity, o, 8+p*18, 18+q*18));
+             o++;
+             
+             }
+		
 		 bindPlayerInventory(player_inventory);
 	}
 	private void bindPlayerInventory(InventoryPlayer player_inventory) {
