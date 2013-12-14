@@ -25,9 +25,9 @@ public class BlockCoinPress extends BlockContainer{
 		setCreativeTab(CreativeTabs.tabBlock);
 		setHardness(3);
 	}
-	
+	private CoinPressTile goldInventory;
 	@SideOnly(Side.CLIENT)
-	private Icon side, bottom, top, front;
+	private Icon side, bottom, top, front, frontoff;
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg){
@@ -44,9 +44,10 @@ public class BlockCoinPress extends BlockContainer{
 		else if (side == 0) return this.top;
 		else if (metadata == 2 && side == 2) return this.front;
 	      else if (metadata == 3 && side == 5) return this.front;
-	      else if (metadata == 0 && side == 3) return this.front;
-	      else if (metadata == 1 && side == 4) return this.front;
+	      else if (metadata == 0 && side == 3) return this.front;	
 	      else return this.side;
+	
+		
 	}
 	
 	public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
