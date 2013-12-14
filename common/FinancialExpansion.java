@@ -77,6 +77,8 @@ public class FinancialExpansion {
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
 		
+		//Tiles
+		
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
 		registerBlock(blocknickelOre, "Nickel Ore", blocknickelOre.getUnlocalizedName());
@@ -92,7 +94,7 @@ public class FinancialExpansion {
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 		GameRegistry.registerWorldGenerator(oregeneration);
-		
+		 GameRegistry.registerTileEntity(CoinPressTile.class, "CoinPressTile");
 		networkRegisters();
 	}
 	

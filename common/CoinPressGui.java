@@ -35,7 +35,7 @@ public class CoinPressGui extends GuiContainer{
       {
     	  //int var4 = this.mc.renderEngine.bindTexture("/gui/furnace.png");
 	         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	         //this.mc.renderEngine.bindTexture("/mods/indrev/gui/guicatalyticdecomposer.png");
+	         this.mc.renderEngine.bindTexture(DefaultProps.COIN_PRESS_GUI);
 	         var5 = (this.width - this.xSize) / 2;
 	         var6 = (this.height - this.ySize) / 2;
 

@@ -13,8 +13,8 @@ public class CoinPressContainer extends Container {
 	public CoinPressContainer(CoinPressTile tile_entity, InventoryPlayer player_inventory){
 		this.tile_entity = tile_entity;
 		int o = 0;
-		int p=0;
-		 for(int q = 0; q <2; q++){
+		int q=0;
+		 for(int p = 0; p <2; p++){
              
             
             
