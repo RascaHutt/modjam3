@@ -44,6 +44,7 @@ protected StockTraderTile tile_entity;
 		 return tile_entity.isUseableByPlayer(entityplayer);
 		
 	}
+	  
 	   public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 	        
            ItemStack stack = null;

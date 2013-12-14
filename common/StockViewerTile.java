@@ -115,7 +115,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	   @Override
+	 /*  @Override
 	    public void readFromNBT(NBTTagCompound tagCompound){
 	            super.readFromNBT(tagCompound);
 	           
@@ -150,7 +150,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	            }
 	           
 	            tagCompound.setTag("Inventory", itemList);
-	    }
+	    }*/
 	  public void updateEntity()
       {
 	int i=0;
