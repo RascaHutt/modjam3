@@ -41,7 +41,7 @@ public class FinancialExpansion {
 	public static Item itemnickelCoin;
 	
 	
-	//OreGeneration oregeneration = new OreGeneration();
+	OreGeneration oregeneration = new OreGeneration();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
@@ -91,7 +91,7 @@ public class FinancialExpansion {
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
-		//GameRegistry.registerWorldGenerator(oregeneration);
+		GameRegistry.registerWorldGenerator(oregeneration);
 	}
 	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
