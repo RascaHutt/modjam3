@@ -33,10 +33,13 @@ public class FinancialExpansion {
 	
 	int nickelCoinID;
 	
+	
+	
 	public static Block blocknickelOre;
 	public static Block blockcoinPress;
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
+	
 	
 	//OreGeneration oregeneration = new OreGeneration();
 	
@@ -54,6 +57,9 @@ public class FinancialExpansion {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		
+		//Block
+		coinPressID = config.get("Coin Press IDs", "Coin Press ID", 700).getInt();
+		
 		//Ore
 		nickelOreID = config.get("Ore IDs", "Nickel Ore ID", 800).getInt();
 		
@@ -67,6 +73,9 @@ public class FinancialExpansion {
 	@Init
 	public void load(FMLInitializationEvent event){
 		
+		//Block
+		blockcoinPress = new BlockCoinPress(coinPressID);
+		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
 		
 	//Ore
 		blocknickelOre = new BlockNickelOre(nickelOreID);
