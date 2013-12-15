@@ -13,9 +13,9 @@ protected StockViewerTile tile_entity;
 	public StockViewerContainer(StockViewerTile tile_entity, InventoryPlayer player_inventory){
 		this.tile_entity = tile_entity;
 		int o = 0;
-		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 18));
+		addSlotToContainer(new Slot(tile_entity, o, 152+1*18, 18));
 		o++;
-		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 2*18));
+		addSlotToContainer(new Slot(tile_entity, o, 152+1*18, 2*18));
 		o++;
          for(int q = 0; q <3; q++){
          for(int p = 0; p <9; p++){
@@ -39,7 +39,7 @@ protected StockViewerTile tile_entity;
      }
 
      for(int i = 0; i < 9; i++){
-             addSlotToContainer(new Slot(player_inventory, i, 8 + i * 18, 142));
+             addSlotToContainer(new Slot(player_inventory, i, 8 + i * 18, 144));
              
      }
 	}
