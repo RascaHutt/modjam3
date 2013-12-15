@@ -20,7 +20,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrade"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrader"}, packetHandler = PacketHandler.class)
 public class FinancialExpansion {
 	@Instance(Reference.MOD_ID)
 	public static FinancialExpansion instance;

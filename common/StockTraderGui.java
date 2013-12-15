@@ -21,6 +21,7 @@ public class StockTraderGui extends GuiContainer{
 	StockTraderTile tile;
 	String text;
 	EntityPlayer player;
+	Boolean a = true;
 	public StockTraderGui(InventoryPlayer inventory,StockTraderTile gold) {
 		super(new StockTraderContainer(gold,inventory));
 		tile = gold;
@@ -60,22 +61,26 @@ public void initGui(){
 		  }
 	  protected void actionPerformed(GuiButton par1GuiButton)
 	    {
-	        if (par1GuiButton.enabled)
-	        {
-	            if (par1GuiButton.id == 1)
-	            {
+	  if (a==true){
+	          
 	                System.out.println("test");
-	                if (Integer.getInteger(text) != null)
+	                
 	                	//tile.getStackInSlot(0), Integer.valueOf(text), false, player);
-	                PacketDispatcher.sendPacketToServer(packet());
-	            }
-	            else if (par1GuiButton.id == 0)
-	            {
-	               
-	            }
-	        }
+	                if (isInteger(text)){
+	                	PacketDispatcher.sendPacketToServer(packet());
+	                a=false;}
+	  }
+	        
 	    }
-	  
+	  public static boolean isInteger(String s) {
+		    try { 
+		        Integer.parseInt(s); 
+		    } catch(NumberFormatException e) { 
+		        return false; 
+		    }
+		    // only got here if we didn't return false
+		    return true;
+		}
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		// TODO Auto-generated method stub
@@ -94,6 +99,9 @@ public Packet packet(){
 	try {
 	        outputStream.writeUTF(text);
 	       outputStream.writeBoolean(false);
+	       outputStream.writeInt(tile.xCoord);
+	       outputStream.writeInt(tile.yCoord);
+	       outputStream.writeInt(tile.zCoord);
 	} catch (Exception ex) {
 	        ex.printStackTrace();
 	}

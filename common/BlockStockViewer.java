@@ -29,8 +29,7 @@ public class BlockStockViewer extends BlockContainer{
          if(tEntity != null){
                  //player.displayGUIFurnace(tEntity);
                  player.openGui(FinancialExpansion.instance, 1, par1World, x, y, z);
-                 if (par1World.isRemote!=true)
-                	 FinancialExpansion.instance.market.listTrade(new ItemStack(Block.blockIron), 100, true, player);
+                
         
          return true;
  }
