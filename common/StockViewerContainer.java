@@ -1,5 +1,6 @@
 package assets.modjam3.common;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,7 +13,9 @@ protected StockViewerTile tile_entity;
 	public StockViewerContainer(StockViewerTile tile_entity, InventoryPlayer player_inventory){
 		this.tile_entity = tile_entity;
 		int o = 0;
-		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 18+-1*18));
+		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 18));
+		o++;
+		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 2*18));
 		o++;
          for(int q = 0; q <3; q++){
          for(int p = 0; p <9; p++){
@@ -50,7 +53,7 @@ protected StockViewerTile tile_entity;
 	       
           ItemStack stack = null;
       Slot slot_object = (Slot) inventorySlots.get(slot);
-     
+      
       if(slot_object != null && slot_object.getHasStack()){
               ItemStack stack_in_slot = slot_object.getStack();
               stack = stack_in_slot.copy();
@@ -71,10 +74,24 @@ protected StockViewerTile tile_entity;
                       slot_object.onSlotChanged();
               }
       }
-
+      stack.stackTagCompound =null;
+      stack.setItemDamage(0);
       return stack;
 	        
 	      //  return null;
 }
-
+	  public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
+	    {
+		  if (par1 >27||par1==0||par1==1){
+			  return super.slotClick(par1, par2, par3, par4EntityPlayer);
+		  }else{
+		  ItemStack stack =tile_entity.getStackInSlot(par1);
+		  //stack.setItemDamage(0);
+		 // stack.stackTagCompound=null;
+		  tile_entity.bcd=true;
+		  tile_entity.setInventorySlotContents(1, stack);
+		  return null;
+		  }
+	    }
+	    
 }
