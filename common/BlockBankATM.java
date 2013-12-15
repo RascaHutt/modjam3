@@ -59,7 +59,7 @@ public class BlockBankATM extends BlockContainer {
 	 public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	    {
 		 if (player.getCurrentEquippedItem()==null){
-			 player.addChatMessage("You need a bank card to acsess the ATM. Talk to a banker to obtain one.");
+			 player.addChatMessage("You need a bank card to access the ATM. Talk to a banker to obtain one.");
 			 return false;
 		 }
 		 Item equipped = player.getCurrentEquippedItem() != null ? player.getCurrentEquippedItem().getItem() : null;
