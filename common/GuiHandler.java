@@ -20,6 +20,7 @@ public class GuiHandler implements IGuiHandler{
 	        case 0: return new CoinPressContainer((CoinPressTile) tile_entity, player.inventory);
 	        case 1: return new StockViewerContainer((StockViewerTile) tile_entity, player.inventory);
 	        case 2: return new StockTraderContainer((StockTraderTile) tile_entity, player.inventory);
+	        case 3: return new BankATMContainer((BankATMTile) tile_entity, player.inventory);
 	        //For more clear-cut usage, you can change these to constants such as:
 	        //case OtherGuiID: return new ContainerYetAnotherTile(player.inventory, (TileEntityYetAnotherTile)tile_entity);
 	        //}
@@ -43,6 +44,7 @@ public class GuiHandler implements IGuiHandler{
 	        case 0: return new CoinPressGui(player.inventory, (CoinPressTile) tile_entity);
 	        case 1: return new StockViewerGui(player.inventory, (StockViewerTile) tile_entity);
 	        case 2: return new StockTraderGui(player.inventory, (StockTraderTile) tile_entity);
+	        case 3: return new BankATMGui(player.inventory, (BankATMTile) tile_entity);
 	       
 	        //For more clear-cut usage, you can change these to constants such as:
 	        //case OtherGuiID: return new ContainerYetAnotherTile(player.inventory, (TileEntityYetAnotherTile)tile_entity);

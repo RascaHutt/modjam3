@@ -7,13 +7,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.world.WorldEvent;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -36,13 +40,14 @@ public class FinancialExpansion {
 	int stockTraderID;
 	int nickelCoinID;
 	int bankCardID;
+	int bankAtmID;
 	public MarketManager market;
 	
 	
 	public static Block blocknickelOre;
 	public static Block blockcoinPress;
 	public static Block blockstockViewer;
-
+	public static Block blockbankATM;
 	public static Block blocknickelBlock;
 
 	public static Block blockstockTrader;
@@ -68,6 +73,7 @@ public class FinancialExpansion {
 		config.load();
 		
 		//Block
+		bankAtmID = config.get("Machine IDs", "Bank ATM ID", 703).getInt();
 		coinPressID = config.get("Machine IDs", "Coin Press ID", 700).getInt();
 		stockViewerID =config.get("Machine IDs", "StockViewer  ID", 701).getInt();
 		nickelOreID = config.get("Ore IDs", "Nickel Ore ID", 800).getInt();
@@ -89,7 +95,7 @@ public class FinancialExpansion {
 	@Init
 	public void load(FMLInitializationEvent event){
 		
-		
+		 market  = new MarketManager();
 		VillagerRegistry.instance().registerVillagerId(100);
 		VillagerRegistry.instance().registerVillagerSkin(100, DefaultProps.BANKER_SKIN);
 		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
@@ -113,6 +119,9 @@ public class FinancialExpansion {
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
 		blockstockViewer = new BlockStockViewer(stockViewerID);
 		registerBlock(blockstockViewer,"Stock Viewer", blockstockViewer.getUnlocalizedName());
+		
+		blockbankATM = new BlockBankATM(bankAtmID);
+		registerBlock(blockbankATM,"Bank ATM", blockbankATM.getUnlocalizedName());
 		
 		blocknickelBlock = new BlockNickelBlock(nickelBlockID);
 		registerBlock(blocknickelBlock, "Nickel Block", blocknickelBlock.getUnlocalizedName());
@@ -140,7 +149,7 @@ public class FinancialExpansion {
 		 GameRegistry.registerTileEntity(StockViewerTile.class, "StockViewerTile");
 		 GameRegistry.registerTileEntity(StockTraderTile.class, "StockTraderTile");
 		networkRegisters();
-		market = new MarketManager();
+		
 		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blocknickelBlock, 1),
 				new Object[]{
 			"nnn",
@@ -159,9 +168,13 @@ public class FinancialExpansion {
 		});
 	}
 	
+	
+		
+		
+	
+	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
 		GameRegistry.registerBlock(block, Reference.MOD_ID + unlocalizedName);
-		LanguageRegistry.addName(block, name);
 	}
 	
 	public static void registerItem(Item item, String name, String unlocalizedName){

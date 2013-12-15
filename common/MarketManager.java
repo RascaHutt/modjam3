@@ -21,24 +21,25 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 
-public class MarketManager extends WorldSavedData{
+public class MarketManager{
 	 private static final String financialexp= "financialexpansion";
 	 
 	  public final Listing[] listings = new Listing[200];
 	public MarketManager() {
-		super(financialexp);
+		
 		// TODO Auto-generated constructor stub
 	}
-	public void listTrade(ItemStack offer,int price,Boolean buy,EntityPlayer player){
+public void listTrade(ItemStack offer,int price,Boolean buy,String player){
 		int b = counter();
 		listings[b] = new Listing();
 		
 		listings[b].items = offer;
 		listings[b].price =price;
 		listings[b].buy = buy;
-		listings[b].username =player.username;
+		listings[b].username =player;
 		
 	}
 	public void completeTrade(int id){
@@ -55,22 +56,6 @@ public class MarketManager extends WorldSavedData{
 		return 200;
 	}
 	
-	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound) {
-		// TODO Auto-generated method stub
-		int i=0;
-		for (Listing list : listings){
-			list.readFromNBT(nbttagcompound.getCompoundTag(String.valueOf(i)));
-			i++;
-		}
-	}
-	@Override
-	public void writeToNBT(NBTTagCompound nbttagcompound) {
-		// TODO Auto-generated method stub
-		int i=0;
-		for (Listing list : listings){
-			  nbttagcompound.setCompoundTag(String.valueOf(i), list.writeToNBT(new NBTTagCompound()));
-			i++;
-		}
-	}
+
+
 }

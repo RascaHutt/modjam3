@@ -155,7 +155,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	  public void updateEntity()
       {
 	int i=0;
-		
+		if (FinancialExpansion.instance.market!=null){
 		for (Listing list:FinancialExpansion.instance.market.listings){
 			
 		if (FinancialExpansion.instance.market.listings[i]!=null){
@@ -166,7 +166,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		//inventory[1]=FinancialExpansion.instance.market.displaySatck(1);
 		}
 		i++;
-		}
+		}}
       }
 	  public void unList(int slot){
 		  FinancialExpansion.instance.market.completeTrade(slot-2);
