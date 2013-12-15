@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -17,6 +19,11 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.storage.ISaveFormat;
 
 public class StockTraderGui extends GuiContainer{
+	int var5;
+	int var6;
+	int x;
+	int y;
+	
 	GuiTextField textReason;
 	StockTraderTile tile;
 	String text;
@@ -28,7 +35,7 @@ public class StockTraderGui extends GuiContainer{
 		player = inventory.player;
 	}
 public void initGui(){
-	textReason= new GuiTextField(fontRenderer, width / 2 -30, height / 2 -70, 98, 20);
+	textReason= new GuiTextField(fontRenderer, 100, 22, 50, 20);
     textReason.setFocused(true);
     textReason.setEnabled(true);
     textReason.setMaxStringLength(20);
@@ -36,10 +43,17 @@ public void initGui(){
 }
 	  protected void drawGuiContainerForegroundLayer(int par1, int par2)
       {
+		  	   int k = (this.width - this.xSize) / 2;
+ 	  	 	   int l = (this.height - this.ySize) / 2;
+ 	  	 	   var5 = (this.width - this.xSize) / 2;
+ 	  	 	   var6 = (this.height - this.ySize) / 2;
+ 	  	 	   x = (this.width - this.xSize) /2 + 100;
+ 	  	 	   y = (this.height - this.ySize) /2 + 52;
+ 	  	 	   
                fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xffffff);
-               this.fontRenderer.drawString("Stock Trader", 66, 6, 4210752);
+               this.fontRenderer.drawString("Stock Trader", 62, 6, 4210752);
               
-               buttonList.add(new GuiButton(1, width / 2 + 2, height / 2 -40, 98, 20, "Submit"));
+               buttonList.add(new GuiButton(1, x, y, 50, 20, "Sell"));
              
                textReason.drawTextBox();
  }
@@ -63,9 +77,9 @@ public void initGui(){
 	    {
 	  if (a==true){
 	          
-	                System.out.println("test");
 	                
-	                	//tile.getStackInSlot(0), Integer.valueOf(text), false, player);
+	                
+	                	
 	                if (isInteger(text)){
 	                	PacketDispatcher.sendPacketToServer(packet());
 	                a=false;}
@@ -81,15 +95,18 @@ public void initGui(){
 		    // only got here if we didn't return false
 		    return true;
 		}
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-		// TODO Auto-generated method stub
-		
-	}
-/*public void drawScreen(int i,int j,float f){
-	textReason.drawTextBox();
-	super.drawScreen(i, j, f);
-}*/
+	  protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+      {
+    	  	 int k = (this.width - this.xSize) / 2;
+    	  	 int l = (this.height - this.ySize) / 2;
+	         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	         this.mc.renderEngine.bindTexture(DefaultProps.STOCK_TRADER_GUI);
+	         var5 = (this.width - this.xSize) / 2;
+	         var6 = (this.height - this.ySize) / 2;
+
+	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+	         int var7=0;
+      }
 public Packet packet(){
 	Random random = new Random();
 	
@@ -97,7 +114,7 @@ public Packet packet(){
 	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 	DataOutputStream outputStream = new DataOutputStream(bos);
 	try {
-	        outputStream.writeUTF(text);
+	       outputStream.writeUTF(text);
 	       outputStream.writeBoolean(false);
 	       outputStream.writeInt(tile.xCoord);
 	       outputStream.writeInt(tile.yCoord);

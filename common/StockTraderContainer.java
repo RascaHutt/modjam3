@@ -17,7 +17,7 @@ protected StockTraderTile tile_entity;
         
         
         
-         addSlotToContainer(new Slot(tile_entity, o, 8+p*18, 18+q*18));
+         addSlotToContainer(new Slot(tile_entity, o, 44+p*18, 35+q*18));
         
              o++;
             
