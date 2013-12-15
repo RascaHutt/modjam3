@@ -30,7 +30,7 @@ protected StockViewerTile tile_entity;
 		// TODO Auto-generated method stub
 		 for(int i = 0; i < 3; i++){
              for(int j = 0; j < 9; j++){
-                     addSlotToContainer(new Slot(player_inventory, j+i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                     addSlotToContainer(new Slot(player_inventory, j+i * 9 + 9, 8 + j * 18, 86 + i * 18));
                     
              }
      }
