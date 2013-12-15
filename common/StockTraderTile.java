@@ -159,7 +159,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
                     NBTTagCompound tager = (NBTTagCompound) tagListed.tagAt(i);
                    
                     byte slot = tag.getByte("Slot");
-                   
+                    listings[i]=new Listing();
                     if(slot >= 0 && slot < inventory.length){
                            listings[i].items = ItemStack.loadItemStackFromNBT(tag);
                     }
@@ -193,7 +193,8 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	            
 	            NBTTagList tagLister = new NBTTagList();
 	            NBTTagList tagListed = new NBTTagList();
-	            for(int i = 0; i < listings.length-1; i++){
+	            for(int i = 0; i < listings.length; i++){
+	            	if (listings[i]!=null){
                     NBTTagCompound tag = new NBTTagCompound();
                     NBTTagCompound tager = new NBTTagCompound();
                     ItemStack stack = listings[i].items;
@@ -209,7 +210,8 @@ public class StockTraderTile extends TileEntity implements IInventory{
                      tager.setInteger("price",listings[i].price);
                     tager.setBoolean("buy", listings[i].buy);
                     tager.setString("username", listings[i].username);
-                    
+                    tagListed.appendTag(tager);
+	            	}
 	            }
 	            tagCompound.setTag("ListingsOffers", tagLister);
 	            tagCompound.setTag("ListingsDetails", tagListed);
