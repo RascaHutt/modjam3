@@ -15,7 +15,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	public int pressTime = 0;
 	int abc = 0;
 	public StockViewerTile(){
-		 this.inventory = new ItemStack[27];
+		 this.inventory = new ItemStack[28];
 	}
 	@Override
 	public int getSizeInventory() {
@@ -158,21 +158,50 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		for (Listing list:FinancialExpansion.instance.market.listings){
 			
 		if (FinancialExpansion.instance.market.listings[i]!=null){
-			inventory[i]=FinancialExpansion.instance.market.listings[i].items;
-		inventory[i].setItemDamage(FinancialExpansion.instance.market.listings[i].price);
+			inventory[i+1]=FinancialExpansion.instance.market.listings[i].items;
+		inventory[i+1].setItemDamage(FinancialExpansion.instance.market.listings[i].price);
+		inventory[i+1].stackTagCompound =(new NBTTagCompound( ) );
+		inventory[i+1].stackTagCompound.setString("username", FinancialExpansion.instance.market.listings[i].username);
 		//inventory[1]=FinancialExpansion.instance.market.displaySatck(1);
 		}
 		i++;
 		}
       }
 @Override
-public ItemStack decrStackSize(int i, int j) {
+public ItemStack decrStackSize(int slotIndex, int amount) {
 	// TODO Auto-generated method stub
+	// TODO Auto-generated method stu
+	if (slotIndex ==0||inventory[0].getItemDamage()>=inventory[slotIndex].getItemDamage()){
+	  ItemStack stack = getStackInSlot(slotIndex);
+    
+    
+    if(stack != null){
+   
+            if(stack.stackSize <= amount){
+                    setInventorySlotContents(slotIndex, null);
+            }
+            else{
+                    stack = stack.splitStack(amount);
+                    if(stack.stackSize == 0){
+                            setInventorySlotContents(slotIndex, null);
+                    }
+            }
+    }
+    if (slotIndex!=0){
+    	inventory[0].setItemDamage(inventory[0].getItemDamage()-inventory[slotIndex].getItemDamage());
+    }
+    return stack;
+	}
 	return null;
 }
 @Override
-public void setInventorySlotContents(int i, ItemStack itemstack) {
-	// TODO Auto-generated method stub
-	
+public void setInventorySlotContents(int slot, ItemStack stack){ 
+	   if (slot==0){
+	this.inventory[slot] = stack;
+    
+    if(stack != null && stack.stackSize > getInventoryStackLimit()){
+            stack.stackSize = getInventoryStackLimit();
+    }
+	   }
 }
 }

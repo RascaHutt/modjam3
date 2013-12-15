@@ -44,7 +44,11 @@ public class StockViewerGui extends GuiContainer{
     protected void drawItemStackTooltip(ItemStack par1ItemStack, int par2, int par3)
     {
         List list = par1ItemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
+        if (par1ItemStack.stackTagCompound!=null){
         list.add(String.valueOf(par1ItemStack.getItemDamage()));
+      
+        	list.add(par1ItemStack.stackTagCompound.getString("username"));
+        }
         for (int k = 0; k < list.size(); ++k)
         {
             if (k == 0)

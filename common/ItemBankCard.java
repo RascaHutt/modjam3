@@ -12,12 +12,14 @@ public class ItemBankCard extends Item {
 		super(id);
 		setUnlocalizedName("itembankcard");
 		setCreativeTab(CreativeTabs.tabBlock);
+		
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg){
 		this.itemIcon = reg.registerIcon(Reference.MOD_TEXTUREPATH + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
+		
 	}
 
 }

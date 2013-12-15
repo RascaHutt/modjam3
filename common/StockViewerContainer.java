@@ -12,7 +12,8 @@ protected StockViewerTile tile_entity;
 	public StockViewerContainer(StockViewerTile tile_entity, InventoryPlayer player_inventory){
 		this.tile_entity = tile_entity;
 		int o = 0;
-		
+		addSlotToContainer(new Slot(tile_entity, o, 8+-1*18, 18+-1*18));
+		o++;
          for(int q = 0; q <3; q++){
          for(int p = 0; p <9; p++){
         
@@ -45,5 +46,35 @@ protected StockViewerTile tile_entity;
 		
 	}
 	  
+	  public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+	       
+          ItemStack stack = null;
+      Slot slot_object = (Slot) inventorySlots.get(slot);
+     
+      if(slot_object != null && slot_object.getHasStack()){
+              ItemStack stack_in_slot = slot_object.getStack();
+              stack = stack_in_slot.copy();
+             
+              if(slot == 0){
+                      if(!mergeItemStack(stack_in_slot, 1, inventorySlots.size(), true)){
+                              return null;
+                      }
+              }
+              else if(!mergeItemStack(stack_in_slot, 0, 1, false)){
+                      return null;
+              }
+     
+              if(stack_in_slot.stackSize == 0){
+                      slot_object.putStack(null);
+              }
+              else{
+                      slot_object.onSlotChanged();
+              }
+      }
+
+      return stack;
+	        
+	      //  return null;
+}
 
 }
