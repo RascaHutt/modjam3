@@ -168,13 +168,9 @@ public class FinancialExpansion {
 		});
 	}
 	
-	
-		
-		
-	
-	
 	public static void registerBlock(Block block, String name, String unlocalizedName){
 		GameRegistry.registerBlock(block, Reference.MOD_ID + unlocalizedName);
+		LanguageRegistry.addName(block, name);
 	}
 	
 	public static void registerItem(Item item, String name, String unlocalizedName){
