@@ -17,6 +17,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
@@ -33,6 +34,7 @@ public class FinancialExpansion {
 	int nickelIngotID;
 	int stockTraderID;
 	int nickelCoinID;
+	int bankCardID;
 	public MarketManager market;
 	
 	
@@ -46,7 +48,7 @@ public class FinancialExpansion {
 
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
-	
+	public static Item itembankCard;
 	
 	OreGeneration oregeneration = new OreGeneration();
 	
@@ -76,14 +78,21 @@ public class FinancialExpansion {
 
 		//Ingot
 		nickelIngotID = config.get("Item IDs", "Nickel Ingot ID", 1000).getInt();
+		//item
+	
 		nickelCoinID = config.get("Item IDs", "Nickel Coin ID", 1001).getInt();
-		
+		bankCardID =config.get("Item IDs", "Bank Card ID", 1002).getInt();
 		
 	}
 	
 	@Init
 	public void load(FMLInitializationEvent event){
 		
+		
+		VillagerRegistry.instance().registerVillagerId(100);
+		VillagerRegistry.instance().registerVillagerSkin(100, DefaultProps.BANKER_SKIN);
+		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
+		VillagerRegistry.instance().registerVillageTradeHandler(100, bankerTradeHandler);
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
@@ -107,6 +116,8 @@ public class FinancialExpansion {
 	//Other
 		itemnickelCoin = new ItemNickelCoin(nickelCoinID);
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
+		itembankCard = new ItemBankCard(bankCardID);
+		registerItem(itembankCard, "Bank Card", itembankCard.getUnlocalizedName());
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 		GameRegistry.registerWorldGenerator(oregeneration);

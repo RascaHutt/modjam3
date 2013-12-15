@@ -1,19 +1,24 @@
 package assets.modjam3.common;
 
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 public class StockViewerGui extends GuiContainer{
 	int var5;
 	int var6;
-
+	StockViewerTile tile;
 	public StockViewerGui(InventoryPlayer inventory,StockViewerTile gold) {
 		super(new StockViewerContainer(gold,inventory));
-		
+		tile = gold;
 	}
 
 	  protected void drawGuiContainerForegroundLayer(int par1, int par2)
@@ -35,6 +40,25 @@ public class StockViewerGui extends GuiContainer{
 	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	         int var7=0;
     }
-    
+	@Override
+    protected void drawItemStackTooltip(ItemStack par1ItemStack, int par2, int par3)
+    {
+        List list = par1ItemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
+        list.add(String.valueOf(par1ItemStack.getItemDamage()));
+        for (int k = 0; k < list.size(); ++k)
+        {
+            if (k == 0)
+            {
+                list.set(k, "\u00a7" + Integer.toHexString(par1ItemStack.getRarity().rarityColor) + (String)list.get(k));
+            }
+            else
+            {
+                list.set(k, EnumChatFormatting.GRAY + (String)list.get(k));
+            }
+        }
+
+        FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
+        drawHoveringText(list, par2, par3, (font == null ? fontRenderer : font));
+    }
 
 }
