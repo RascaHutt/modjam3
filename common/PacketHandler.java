@@ -41,7 +41,7 @@ Boolean buy;
         }
         StockTraderTile tile = (StockTraderTile) player2.worldObj.getBlockTileEntity(x,y,z);
         FinancialExpansion.instance.market.listTrade(tile.getStackInSlot(0),Integer.valueOf(price), buy, player2);
-        
+        tile.sellItems();
 	}
 
 }

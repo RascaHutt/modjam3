@@ -14,8 +14,9 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	private ItemStack[] inventory;
 	public int pressTime = 0;
 	int abc = 0;
+	public Boolean bcd=false;
 	public StockViewerTile(){
-		 this.inventory = new ItemStack[28];
+		 this.inventory = new ItemStack[29];
 	}
 	@Override
 	public int getSizeInventory() {
@@ -115,7 +116,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	 /*  @Override
+	   @Override
 	    public void readFromNBT(NBTTagCompound tagCompound){
 	            super.readFromNBT(tagCompound);
 	           
@@ -150,7 +151,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	            }
 	           
 	            tagCompound.setTag("Inventory", itemList);
-	    }*/
+	    }
 	  public void updateEntity()
       {
 	int i=0;
@@ -158,10 +159,10 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		for (Listing list:FinancialExpansion.instance.market.listings){
 			
 		if (FinancialExpansion.instance.market.listings[i]!=null){
-			inventory[i+1]=FinancialExpansion.instance.market.listings[i].items;
-		inventory[i+1].setItemDamage(FinancialExpansion.instance.market.listings[i].price);
-		inventory[i+1].stackTagCompound =(new NBTTagCompound( ) );
-		inventory[i+1].stackTagCompound.setString("username", FinancialExpansion.instance.market.listings[i].username);
+			inventory[i+2]=FinancialExpansion.instance.market.listings[i].items;
+		inventory[i+2].setItemDamage(FinancialExpansion.instance.market.listings[i].price);
+		inventory[i+2].stackTagCompound =(new NBTTagCompound( ) );
+		inventory[i+2].stackTagCompound.setString("username", FinancialExpansion.instance.market.listings[i].username);
 		//inventory[1]=FinancialExpansion.instance.market.displaySatck(1);
 		}
 		i++;
@@ -171,7 +172,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 public ItemStack decrStackSize(int slotIndex, int amount) {
 	// TODO Auto-generated method stub
 	// TODO Auto-generated method stu
-	if (slotIndex ==0||inventory[0].getItemDamage()>=inventory[slotIndex].getItemDamage()){
+	if (slotIndex ==1||slotIndex ==0||inventory[0].getItemDamage()>=inventory[slotIndex].getItemDamage()){
 	  ItemStack stack = getStackInSlot(slotIndex);
     
     
@@ -187,16 +188,17 @@ public ItemStack decrStackSize(int slotIndex, int amount) {
                     }
             }
     }
-    if (slotIndex!=0){
-    	inventory[0].setItemDamage(inventory[0].getItemDamage()-inventory[slotIndex].getItemDamage());
-    }
+
     return stack;
 	}
 	return null;
 }
 @Override
 public void setInventorySlotContents(int slot, ItemStack stack){ 
-	   if (slot==0){
+	  
+		
+	if (slot==0||(slot==1&&bcd==true)){
+		bcd=false;
 	this.inventory[slot] = stack;
     
     if(stack != null && stack.stackSize > getInventoryStackLimit()){

@@ -155,6 +155,10 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	      {
 			
 	      }
+		  public void sellItems(){
+			  inventory[0] = null;
+		  }
+
 		  
 
 		  
