@@ -23,7 +23,7 @@ public class StockViewerGui extends GuiContainer{
 
 	  protected void drawGuiContainerForegroundLayer(int par1, int par2)
       {
-               fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xffffff);
+               fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 3, 4210752);
                this.fontRenderer.drawString("Stock Viewer", 51, 6, 4210752);
       }
 
@@ -37,7 +37,7 @@ public class StockViewerGui extends GuiContainer{
 	         var5 = (this.width - this.xSize) / 2;
 	         var6 = (this.height - this.ySize) / 2;
 
-	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize  + 15, this.ySize);
 	         int var7=0;
     }
 	@Override
