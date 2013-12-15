@@ -41,6 +41,9 @@ public class MarketManager extends WorldSavedData{
 		listings[b].username =player.username;
 		
 	}
+	public void completeTrade(int id){
+		listings[id] =null;
+	}
 	public int counter(){
 		int i=0;
 		for (Listing list:listings){
