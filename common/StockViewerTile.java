@@ -78,7 +78,7 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	@Override
 	public String getInvName() {
 		// TODO Auto-generated method stub
-		return "Coin Press";
+		return "Stock Viewer";
 	}
 
 	@Override
@@ -200,7 +200,7 @@ public ItemStack decrStackSize(int slotIndex, int amount) {
 public void setInventorySlotContents(int slot, ItemStack stack){ 
 	  
 		
-	if (slot==0||(slot==1&&bcd==true)){
+	if (slot==0||bcd==true){
 		bcd=false;
 	this.inventory[slot] = stack;
     

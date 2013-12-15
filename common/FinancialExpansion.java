@@ -5,6 +5,7 @@ import java.util.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -93,6 +94,20 @@ public class FinancialExpansion {
 		VillagerRegistry.instance().registerVillagerSkin(100, DefaultProps.BANKER_SKIN);
 		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
 		VillagerRegistry.instance().registerVillageTradeHandler(100, bankerTradeHandler);
+		
+		  VillagerRegistry.instance().registerVillageCreationHandler(new VillageBankHandler());
+          try
+          {
+              // if (new CallableMinecraftVersion(null).minecraftVersion().equals("1.6.4"))
+              // {
+             // MapGenStructureIO.func_143031_a(ComponentBank.class, "assets:ToolWorkshopStructure");
+              
+              // }
+          }
+          catch (Throwable e)
+          {
+              System.out.println("Error registering TConstruct Structures with Vanilla Minecraft: this is expected in versions earlier than 1.6.4");
+          }
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());

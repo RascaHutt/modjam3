@@ -82,19 +82,26 @@ protected StockViewerTile tile_entity;
 }
 	  public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
 	    {
-		  if (par1 >27||par1==0||par1==1){
+		  if ((par1 >27||par1==0||par1==1)||tile_entity.getStackInSlot(par1)==null){
 			  return super.slotClick(par1, par2, par3, par4EntityPlayer);
 		  }else{
-		  ItemStack stack =tile_entity.getStackInSlot(par1);
-		  //stack.setItemDamage(0);
-		 // stack.stackTagCompound=null;
+			  if(tile_entity.getStackInSlot(0)==null)
+					  return null;
+			  if(tile_entity.getStackInSlot(0).getItem()==FinancialExpansion.itembankCard){
+				if   (tile_entity.getStackInSlot(0).getItemDamage()>=tile_entity.getStackInSlot(par1).getItemDamage()){
+		  tile_entity.getStackInSlot(0).setItemDamage(tile_entity.getStackInSlot(0).getItemDamage()-tile_entity.getStackInSlot(par1).getItemDamage());
+					ItemStack stack =tile_entity.getStackInSlot(par1);
+		  stack.setItemDamage(0);
+		  stack.stackTagCompound=null;
 		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(1, stack);
 		  tile_entity.unList(par1);
+		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(par1,null);
 		  par4EntityPlayer.worldObj.markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
+		 
+		  }}}
 		  return null;
-		  }
 	    }
 	    
 }
