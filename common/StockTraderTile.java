@@ -12,6 +12,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	private ItemStack[] inventory;
 	 public final Listing[] listings = new Listing[200];
 	public int pressTime = 0;
+	public int balance=0;
 	int abc = 0;
 	public StockTraderTile(){
 		 this.inventory = new ItemStack[1];
@@ -35,11 +36,14 @@ public class StockTraderTile extends TileEntity implements IInventory{
 			listings[b].price =price;
 			listings[b].buy = buy;
 			listings[b].username =player.username;
-			FinancialExpansion.instance.market.listTrade(offer, price, buy, player.username);
+			FinancialExpansion.instance.market.listTrade(offer, price, buy, player.username,this.xCoord,this.yCoord,this.zCoord,this.worldObj,b);
 			
 		}
 		public void completeTrade(int id){
+			balance = balance + listings[id].price;
 			listings[id] =null;
+			
+		
 		}
 		public int counter(){
 			int i=0;
@@ -166,7 +170,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
                     listings[i].price = tager.getInteger("price");
                     listings[i].buy = tager.getBoolean("buy");
                     listings[i].username = tager.getString("username");
-                    FinancialExpansion.instance.market.listTrade(listings[i].items, listings[i].price, listings[i].buy, listings[i].username);
+                    FinancialExpansion.instance.market.listTrade(listings[i].items, listings[i].price, listings[i].buy, listings[i].username,this.xCoord,this.yCoord,this.zCoord,this.worldObj,i);
 	            }
 	            
 	            

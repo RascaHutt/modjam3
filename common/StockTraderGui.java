@@ -52,6 +52,7 @@ public void initGui(){
  	  	 	   
                fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xffffff);
                this.fontRenderer.drawString("Stock Trader", 62, 6, 4210752);
+               this.fontRenderer.drawString(String.valueOf(tile.balance), 62, 16, 4210752);
               
                buttonList.add(new GuiButton(1, x, y, 50, 20, "Sell"));
              

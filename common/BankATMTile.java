@@ -150,84 +150,12 @@ public class BankATMTile extends TileEntity implements IInventory{
            
             tagCompound.setTag("Inventory", itemList);
     }
-    public void pressItem()
-    {
-             if (this.canPress())
-             {
-                     ItemStack var1 = CoinPressRecipies.press().getPressResult(this.inventory[0].getItem().itemID);
-                     if (this.inventory[1] == null)
-                     {
-                             this.inventory[1] = var1.copy();
-                           
-                     }
-                     else if (this.inventory[1].itemID == var1.itemID)
-                     {
-                    	 System.out.println("2");
-                             ++this.inventory[1].stackSize;
-                     }
-                     --this.inventory[0].stackSize;
-                     if (this.inventory[0].stackSize == 0)
-                     {
-                             Item var2 = this.inventory[0].getItem().getContainerItem();
-                             this.inventory[0] = var2 == null ? null : new ItemStack(var2);
-                     }
-             }
-    }
-	public boolean canPress() {
-		// TODO Auto-generated method stub
-		  if (inventory[0] == null)
-          {
-			  	  abc = 0;
-                  return false;
-                  
-          }
-
-          ItemStack itemstack = CoinPressRecipies.press().getPressResult(inventory[0].getItem().itemID);
-
-          if (itemstack == null)
-          {
-        	 
-                  return false;
-          }
-
-          if (inventory[1] == null)
-          {
-        	 
-                  return true;
-          }
-
-          if (!inventory[1].isItemEqual(itemstack))
-          {
-        	 
-                  return false;
-          }
-
-          if (inventory[1].stackSize < getInventoryStackLimit() && inventory[1].stackSize < inventory[1].getMaxStackSize())
-          {
-        	  
-                  return true;
-          }
-
-          return inventory[1].stackSize < itemstack.getMaxStackSize();
-	}
+  
 	  public void updateEntity()
       {
-		if (abc ==100){
-			
-			if (canPress()){
-				pressItem();
-				
-			}
-			abc=0;
-		}else{
-			
-			abc++;
-		}
+		
       }
 	  
-	  public int getCookProgressScaled(int par1)
-	    {
-	        return this.abc * par1 / 200;
-	    }
+
 	  
 }

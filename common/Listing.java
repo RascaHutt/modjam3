@@ -3,12 +3,18 @@ package assets.modjam3.common;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
 public class Listing {
 	public ItemStack items;
 	public int price=0;
 	public boolean buy = true;
 	public String username;
+	public int x;
+	public int y;
+	public int z;
+	public World world;
+	int ID;
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
         // TODO Auto-generated method stub
        
