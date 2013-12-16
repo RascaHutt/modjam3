@@ -24,6 +24,8 @@ protected BankATMTile tile_entity;
 		
 		 bindPlayerInventory(player_inventory);
 	}
+	
+	
 	private void bindPlayerInventory(InventoryPlayer player_inventory) {
 		// TODO Auto-generated method stub
 		 for(int i = 0; i < 3; i++){

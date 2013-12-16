@@ -72,5 +72,8 @@ public class BankATMGui extends GuiContainer{
 	         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	         int var7=0;
       }
+	  protected void drawGuiContainerForegroundLayer(float par1, int par2, int pa3){
+		  this.fontRenderer.drawString("Coin Press", 66, 6, 4210752);
+	  }
 
 }

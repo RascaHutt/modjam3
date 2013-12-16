@@ -114,7 +114,7 @@ public class FinancialExpansion {
           }
           catch (Throwable e)
           {
-              System.out.println("Error registering TConstruct Structures with Vanilla Minecraft: this is expected in versions earlier than 1.6.4");
+              System.out.println("Error registering structures");
           }
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
