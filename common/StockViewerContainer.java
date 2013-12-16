@@ -103,7 +103,10 @@ protected StockViewerTile tile_entity;
 			  if(tile_entity.getStackInSlot(0).getItem()==FinancialExpansion.itembankCard){
 				if   (tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")>=tile_entity.getStackInSlot(par1).getItemDamage()){
 		 int bal=tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")-tile_entity.getStackInSlot(par1).getItemDamage();
-					tile_entity.getStackInSlot(0).stackTagCompound.setInteger("balance",bal );
+		 
+		 //PacketDispatcher.sendPacketToServer(packet(bal));
+		  
+		 tile_entity.getStackInSlot(0).stackTagCompound.setInteger("balance",bal );
 					ItemStack stack =tile_entity.getStackInSlot(par1);
 		  stack.setItemDamage(0);
 		  stack.stackTagCompound=null;
@@ -113,12 +116,13 @@ protected StockViewerTile tile_entity;
 		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(par1,null);
 		  par4EntityPlayer.worldObj.markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
-			PacketDispatcher.sendPacketToServer(packet(bal));
+		
+		
 		  }}}}
 		  return null;
 	    }
 	 public Packet packet(int balance){
-			Random random = new Random();
+	
 			
 
 			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);

@@ -49,7 +49,8 @@ public void initGui(){
  	  	 	   var6 = (this.height - this.ySize) / 2;
  	  	 	   x = (this.width - this.xSize) /2 + 100;
  	  	 	   y = (this.height - this.ySize) /2 + 52;
- 	  	 	   
+ 	  	 	  
+ 	  	 	
                fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xffffff);
                this.fontRenderer.drawString("Stock Trader", 62, 6, 4210752);
                this.fontRenderer.drawString(String.valueOf(tile.balance), 62, 16, 4210752);

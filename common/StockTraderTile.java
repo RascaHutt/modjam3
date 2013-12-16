@@ -1,11 +1,18 @@
 package assets.modjam3.common;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.util.Random;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 public class StockTraderTile extends TileEntity implements IInventory{
@@ -36,12 +43,14 @@ public class StockTraderTile extends TileEntity implements IInventory{
 			listings[b].price =price;
 			listings[b].buy = buy;
 			listings[b].username =player.username;
+			if (player.worldObj.isRemote!=true){
 			FinancialExpansion.instance.market.listTrade(offer, price, buy, player.username,this.xCoord,this.yCoord,this.zCoord,this.worldObj,b);
-			
+			}
 		}
 		public void completeTrade(int id){
 			balance = balance + listings[id].price;
 			listings[id] =null;
+			PacketDispatcher.sendPacketToAllPlayers(packet());
 			
 		
 		}
@@ -170,6 +179,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
                     listings[i].price = tager.getInteger("price");
                     listings[i].buy = tager.getBoolean("buy");
                     listings[i].username = tager.getString("username");
+                   
                     FinancialExpansion.instance.market.listTrade(listings[i].items, listings[i].price, listings[i].buy, listings[i].username,this.xCoord,this.yCoord,this.zCoord,this.worldObj,i);
 	            }
 	            
@@ -231,6 +241,28 @@ public class StockTraderTile extends TileEntity implements IInventory{
 		  }
 
 		  
+		  public Packet packet(){
+				Random random = new Random();
+				
 
+				ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+				DataOutputStream outputStream = new DataOutputStream(bos);
+				try {
+				   
+				      
+				       outputStream.writeInt(this.xCoord);
+				       outputStream.writeInt(this.yCoord);
+				       outputStream.writeInt(this.zCoord);
+				       outputStream.writeInt(balance);
+				} catch (Exception ex) {
+				        ex.printStackTrace();
+				}
+
+				Packet250CustomPayload packet = new Packet250CustomPayload();
+				packet.channel = "traderbalance";
+				packet.data = bos.toByteArray();
+				packet.length = bos.size();
+				return packet;
+			}
 		  
 	}

@@ -26,7 +26,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrader","stockviewer","balanceupdate","stockclient"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrader","stockviewer","balanceupdate","stockclient","traderbalance"}, packetHandler = PacketHandler.class)
 public class FinancialExpansion {
 	@Instance(Reference.MOD_ID)
 	public static FinancialExpansion instance;

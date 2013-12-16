@@ -30,6 +30,8 @@ public class PacketHandler implements IPacketHandler{
          if (packet.channel.equals("stockclient")) 
         	 stockViewerClient(packet,(EntityPlayer) player);
      
+         if (packet.channel.equals("traderbalance")) 
+        	 traderBalance(packet,(EntityPlayer) player);
 	}
 
 	private void stockTrade(Packet250CustomPayload packet,Player player) {
@@ -151,13 +153,47 @@ try {
  xx = inputStream.readInt();
  yy = inputStream.readInt();
  zz = inputStream.readInt();
- id = inputStream.readInt();
+
  balance = inputStream.readInt();
 
 
  tile = (StockViewerTile) world.getBlockTileEntity(xx,yy, zz);
  //tile.listTrade(new ItemStack(Item.itemsList[itemid],amount), price, buy, player.worldObj.getPlayerEntityByName(player2));;
 tile.getStackInSlot(0).stackTagCompound.setInteger("balance",balance);
+} catch (IOException e) {
+ e.printStackTrace();
+ return;
+}
+
+System.out.println(xx);
+}
+	private void traderBalance(Packet250CustomPayload packet,
+            EntityPlayer player) {
+    // TODO Auto-generated method stub
+    
+DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
+World world = player.worldObj;
+if (world.isRemote == true)
+ System.out.println("yes");
+int xx;
+int yy;
+int zz;
+int balance;
+
+String name;
+StockTraderTile tile;
+try {
+ xx = inputStream.readInt();
+ yy = inputStream.readInt();
+ zz = inputStream.readInt();
+ balance = inputStream.readInt();
+ 
+
+ 
+
+ tile = (StockTraderTile) world.getBlockTileEntity(xx,yy, zz);
+ tile.balance=balance;
+
 } catch (IOException e) {
  e.printStackTrace();
  return;

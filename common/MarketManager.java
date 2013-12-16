@@ -52,14 +52,15 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 		listings[b].z=z;
 		listings[b].world = world;
 		listings[b].ID = ID;
+		if (world!=null){
 		if (world.isRemote==false){
-		
+	
 			PacketDispatcher.sendPacketToAllPlayers(packet2(x,y,z,ID,"stockclient", price, offer.stackSize, player, buy, offer.itemID));
-		}
+		}}
 	}
 	public void completeTrade(int id){
 		if (listings[id]!=null){
-		PacketDispatcher.sendPacketToServer(packet(listings[id].x,listings[id].y,listings[id].z,listings[id].ID,"stockviewer"));
+		//PacketDispatcher.sendPacketToServer(packet(listings[id].x,listings[id].y,listings[id].z,listings[id].ID,"stockviewer"));
 		//tile.completeTrade(listings[id].ID);
 		}
 		listings[id] =null;
