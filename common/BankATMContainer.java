@@ -17,7 +17,7 @@ protected BankATMTile tile_entity;
              
             
             
-             addSlotToContainer(new Slot(tile_entity, o, 56+p*60, 35+q*18));
+             addSlotToContainer(new Slot(tile_entity, o, 44+p*60, 35+q*18));
              o++;
              
              }

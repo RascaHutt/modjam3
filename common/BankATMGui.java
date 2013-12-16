@@ -65,7 +65,7 @@ public class BankATMGui extends GuiContainer{
     	  	 int k = (this.width - this.xSize) / 2;
     	  	 int l = (this.height - this.ySize) / 2;
 	         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	         this.mc.renderEngine.bindTexture(DefaultProps.STOCK_TRADER_GUI);
+	         this.mc.renderEngine.bindTexture(DefaultProps.ATM_GUI);
 	         var5 = (this.width - this.xSize) / 2;
 	         var6 = (this.height - this.ySize) / 2;
 

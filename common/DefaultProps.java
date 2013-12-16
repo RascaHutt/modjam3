@@ -7,5 +7,6 @@ public class DefaultProps {
 	  public  static final ResourceLocation STOCK_VIEWER_GUI =new ResourceLocation("modjam3:textures/gui/stockviewer.png");
 	  public  static final ResourceLocation BANKER_SKIN =new ResourceLocation("modjam3:textures/entities/banker.png");
 	  public  static final ResourceLocation STOCK_TRADER_GUI =new ResourceLocation("modjam3:textures/gui/stocktrader.png");
+	  public  static final ResourceLocation ATM_GUI =new ResourceLocation("modjam3:textures/gui/bankatm.png");
 
 }
