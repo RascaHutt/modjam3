@@ -3,6 +3,7 @@ package assets.modjam3.common;
 import java.util.Arrays;
 
 import net.minecraft.block.Block;
+import net.minecraft.crash.CallableMinecraftVersion;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -102,20 +103,6 @@ public class FinancialExpansion {
 		}
 		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
 		VillagerRegistry.instance().registerVillageTradeHandler(100, bankerTradeHandler);
-		
-		  VillagerRegistry.instance().registerVillageCreationHandler(new VillageBankHandler());
-          try
-          {
-              // if (new CallableMinecraftVersion(null).minecraftVersion().equals("1.6.4"))
-              // {
-             // MapGenStructureIO.func_143031_a(ComponentBank.class, "assets:ToolWorkshopStructure");
-              
-              // }
-          }
-          catch (Throwable e)
-          {
-              System.out.println("Error registering structures");
-          }
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
