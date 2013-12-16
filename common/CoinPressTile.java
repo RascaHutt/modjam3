@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 public class CoinPressTile extends TileEntity implements IInventory{
 	private ItemStack[] inventory;
 	public int pressTime = 0;
-	int abc = 0;
+	int abc = 1;
 	public CoinPressTile(){
 		 this.inventory = new ItemStack[2];
 	}
@@ -151,8 +151,7 @@ public class CoinPressTile extends TileEntity implements IInventory{
     }
     public void pressItem()
     {
-             if (this.canPress())
-             {
+            
                      ItemStack var1 = CoinPressRecipies.press().getPressResult(this.inventory[0].getItem().itemID);
                      if (this.inventory[1] == null)
                      {
@@ -170,7 +169,7 @@ public class CoinPressTile extends TileEntity implements IInventory{
                              Item var2 = this.inventory[0].getItem().getContainerItem();
                              this.inventory[0] = var2 == null ? null : new ItemStack(var2);
                      }
-             }
+             
     }
 	public boolean canPress() {
 		// TODO Auto-generated method stub
@@ -210,7 +209,7 @@ public class CoinPressTile extends TileEntity implements IInventory{
 	}
 	  public void updateEntity()
       {
-		if (abc == 100){
+		if (abc ==100){
 			
 			if (canPress()){
 				pressItem();
@@ -222,11 +221,12 @@ public class CoinPressTile extends TileEntity implements IInventory{
 			
 			abc++;
 		}
+		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
       }
 	  
 	  public int getCookProgressScaled(int par1)
 	    {
-	        return this.abc * par1 / 200;
+	        return this.abc * par1 / 50;
 	    }
 	  
 }

@@ -161,12 +161,14 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		for (Listing list:FinancialExpansion.instance.market.listings){
 			
 		if (FinancialExpansion.instance.market.listings[i]!=null){
+			if (FinancialExpansion.instance.market.listings[i+1]!=null){
+			if (FinancialExpansion.instance.market.listings[i].items!=FinancialExpansion.instance.market.listings[i+1].items)
 			inventory[i+2]=FinancialExpansion.instance.market.listings[i].items;
 		inventory[i+2].setItemDamage(FinancialExpansion.instance.market.listings[i].price);
 		inventory[i+2].stackTagCompound =(new NBTTagCompound( ) );
 		inventory[i+2].stackTagCompound.setString("username", FinancialExpansion.instance.market.listings[i].username);
 		//inventory[1]=FinancialExpansion.instance.market.displaySatck(1);
-		}
+		}}
 		i++;
 		}}
       }

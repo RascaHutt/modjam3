@@ -216,10 +216,10 @@ public class FinancialExpansion {
 	  public void serverLoad(FMLServerStartingEvent event)
 	  {
 	    event.registerServerCommand(new CardCommand());
-	    
+	    //market2 = new MarketManager();
 	  }
 	  @EventHandler
-	  public void worldLoad(FMLServerStartingEvent event)
+	  public void clientLoad(FMLServerStartingEvent event)
 	  {
 	   market = new MarketManager();
 	    
