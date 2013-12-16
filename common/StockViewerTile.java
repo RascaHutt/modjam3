@@ -184,13 +184,13 @@ public ItemStack decrStackSize(int slotIndex, int amount) {
     if(stack != null){
    
             if(stack.stackSize <= amount){
-            	//bcd=true;
+            	bcd=true;
                     setInventorySlotContents(slotIndex, null);
             }
             else{
                     stack = stack.splitStack(amount);
                     if(stack.stackSize == 0){
-                    	//bcd=true;
+                    bcd=true;
                             setInventorySlotContents(slotIndex, null);
                     }
             }
@@ -204,13 +204,13 @@ public ItemStack decrStackSize(int slotIndex, int amount) {
 public void setInventorySlotContents(int slot, ItemStack stack){ 
 	  
 		
-	/*if (slot==0||bcd==true){
-		bcd=false;*/
+	if (slot==0||bcd==true){
+		bcd=false;
 	this.inventory[slot] = stack;
     
     if(stack != null && stack.stackSize > getInventoryStackLimit()){
             stack.stackSize = getInventoryStackLimit();
     }
-	   
+	}
 }
 }

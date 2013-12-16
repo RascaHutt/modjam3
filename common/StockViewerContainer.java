@@ -80,17 +80,22 @@ protected StockViewerTile tile_entity;
 	        
 	      //  return null;
 }
+	 @Override
 	  public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
 	    {
+		 
 		  if (par1!=-999){
+			  if (par3==4){
+				  par3=0;
+			  }
 		  if ((par1 >27||par1==0||par1==1)||tile_entity.getStackInSlot(par1)==null){
-			  return super.slotClick(par1, par2, par3, par4EntityPlayer);
+			 super.slotClick(par1, par2, par3, par4EntityPlayer);
 		  }else{
 			  if(tile_entity.getStackInSlot(0)==null)
 					  return null;
 			  if(tile_entity.getStackInSlot(0).getItem()==FinancialExpansion.itembankCard){
-				if   (tile_entity.getStackInSlot(0).getItemDamage()>=tile_entity.getStackInSlot(par1).getItemDamage()){
-		  tile_entity.getStackInSlot(0).setItemDamage(tile_entity.getStackInSlot(0).getItemDamage()-tile_entity.getStackInSlot(par1).getItemDamage());
+				if   (tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")>=tile_entity.getStackInSlot(par1).getItemDamage()){
+		  tile_entity.getStackInSlot(0).stackTagCompound.setInteger("balance", tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")-tile_entity.getStackInSlot(par1).getItemDamage());
 					ItemStack stack =tile_entity.getStackInSlot(par1);
 		  stack.setItemDamage(0);
 		  stack.stackTagCompound=null;

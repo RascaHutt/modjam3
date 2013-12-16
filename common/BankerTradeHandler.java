@@ -16,7 +16,8 @@ public class BankerTradeHandler implements IVillageTradeHandler {
 	public void manipulateTradesForVillager(EntityVillager villager,
 			MerchantRecipeList recipeList, Random random) {
 	ItemStack stack= new ItemStack(FinancialExpansion.itembankCard,1,0);
-	stack.setItemDamage(100);
+	stack.stackTagCompound =(new NBTTagCompound( ) );
+	stack.stackTagCompound.setInteger("balance", 100);
 	//stack.stackTagCompound =(new NBTTagCompound( ) );
 		recipeList.add(new MerchantRecipe(new ItemStack(FinancialExpansion.itemnickelCoin,8,0),stack));
 	}

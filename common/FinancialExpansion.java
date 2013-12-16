@@ -172,7 +172,11 @@ public class FinancialExpansion {
 		GameRegistry.registerBlock(block, Reference.MOD_ID + unlocalizedName);
 		LanguageRegistry.addName(block, name);
 	}
-	
+	  @EventHandler
+	  public void serverLoad(FMLServerStartingEvent event)
+	  {
+	    event.registerServerCommand(new CardCommand());
+	  }
 	public static void registerItem(Item item, String name, String unlocalizedName){
 		GameRegistry.registerItem(item, Reference.MOD_ID + unlocalizedName);
 		LanguageRegistry.addName(item, name);

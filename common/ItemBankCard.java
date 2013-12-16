@@ -19,6 +19,7 @@ public class ItemBankCard extends Item {
 		setUnlocalizedName("itembankcard");
 		setCreativeTab(CreativeTabs.tabBlock);
 		this.setMaxStackSize(1);
+		
 	}
 	
 	@Override
@@ -30,7 +31,9 @@ public class ItemBankCard extends Item {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-	list.add(String.valueOf(stack.getItemDamage()));
-	
+		
+		if (stack.stackTagCompound!=null){
+	list.add(String.valueOf(stack.stackTagCompound.getInteger("balance")));
+		}
 	}
 }
