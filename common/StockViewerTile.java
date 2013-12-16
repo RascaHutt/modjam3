@@ -27,6 +27,8 @@ public class StockViewerTile extends TileEntity implements IInventory{
 	@Override
 	public ItemStack getStackInSlot(int i) {
 		// TODO Auto-generated method stub
+		if (i<0)
+			return null;
 		  return this.inventory[i];
 	}
 
@@ -175,22 +177,24 @@ public class StockViewerTile extends TileEntity implements IInventory{
 public ItemStack decrStackSize(int slotIndex, int amount) {
 	// TODO Auto-generated method stub
 	// TODO Auto-generated method stu
-	if (slotIndex ==1||slotIndex ==0||inventory[0].getItemDamage()>=inventory[slotIndex].getItemDamage()){
+	//if (slotIndex ==1||slotIndex ==0||inventory[0].getItemDamage()>=inventory[slotIndex].getItemDamage()){
 	  ItemStack stack = getStackInSlot(slotIndex);
     
     
     if(stack != null){
    
             if(stack.stackSize <= amount){
+            	//bcd=true;
                     setInventorySlotContents(slotIndex, null);
             }
             else{
                     stack = stack.splitStack(amount);
                     if(stack.stackSize == 0){
+                    	//bcd=true;
                             setInventorySlotContents(slotIndex, null);
                     }
             }
-    }
+    //}
 
     return stack;
 	}
@@ -200,13 +204,13 @@ public ItemStack decrStackSize(int slotIndex, int amount) {
 public void setInventorySlotContents(int slot, ItemStack stack){ 
 	  
 		
-	if (slot==0||bcd==true){
-		bcd=false;
+	/*if (slot==0||bcd==true){
+		bcd=false;*/
 	this.inventory[slot] = stack;
     
     if(stack != null && stack.stackSize > getInventoryStackLimit()){
             stack.stackSize = getInventoryStackLimit();
     }
-	   }
+	   
 }
 }

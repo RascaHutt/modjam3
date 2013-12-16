@@ -82,6 +82,7 @@ protected StockViewerTile tile_entity;
 }
 	  public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer)
 	    {
+		  if (par1!=-999){
 		  if ((par1 >27||par1==0||par1==1)||tile_entity.getStackInSlot(par1)==null){
 			  return super.slotClick(par1, par2, par3, par4EntityPlayer);
 		  }else{
@@ -100,7 +101,7 @@ protected StockViewerTile tile_entity;
 		  tile_entity.setInventorySlotContents(par1,null);
 		  par4EntityPlayer.worldObj.markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
 		 
-		  }}}
+		  }}}}
 		  return null;
 	    }
 	    
