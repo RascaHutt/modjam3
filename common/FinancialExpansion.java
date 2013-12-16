@@ -99,7 +99,7 @@ public class FinancialExpansion {
 	@Init
 	public void load(FMLInitializationEvent event){
 		
-		 market  = new MarketManager();
+		
 		VillagerRegistry.instance().registerVillagerId(100);
 		if (event.getSide().isClient()){
 		VillagerRegistry.instance().registerVillagerSkin(100, DefaultProps.BANKER_SKIN);
@@ -216,6 +216,13 @@ public class FinancialExpansion {
 	  public void serverLoad(FMLServerStartingEvent event)
 	  {
 	    event.registerServerCommand(new CardCommand());
+	    
+	  }
+	  @EventHandler
+	  public void worldLoad(FMLServerStartingEvent event)
+	  {
+	   market = new MarketManager();
+	    
 	  }
 	public static void registerItem(Item item, String name, String unlocalizedName){
 		GameRegistry.registerItem(item, Reference.MOD_ID + unlocalizedName);

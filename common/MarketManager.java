@@ -61,14 +61,17 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 	public void completeTrade(int id,int balance){
 		if (listings[id]!=null){
 		//PacketDispatcher.sendPacketToServer(packet3(listings[id].x,listings[id].y,listings[id].z,balance));
-		updateCard(listings[id].x,listings[id].y,listings[id].z,balance);
+		updateCard(listings[id].x,listings[id].y,listings[id].z,balance,true);
 		//tile.completeTrade(listings[id].ID);
 		}
 		listings[id] =null;
 		
 	}
-	public void updateCard(int x,int y,int z ,int balance){
-		PacketDispatcher.sendPacketToAllPlayers(packet3(x,y,z,balance));
+	public void updateCard(int x,int y,int z ,int balance,Boolean client){
+		if (client)
+			PacketDispatcher.sendPacketToAllPlayers(packet3(x,y,z,balance));
+		else
+			PacketDispatcher.sendPacketToServer(packet3(x,y,z,balance));
 	}
 	public int counter(){
 		int i=0;
