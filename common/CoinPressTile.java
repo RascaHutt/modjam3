@@ -185,7 +185,6 @@ public class CoinPressTile extends TileEntity implements IInventory{
 
           if (itemstack == null)
           {
-        	 
                   return false;
           }
 
@@ -211,10 +210,11 @@ public class CoinPressTile extends TileEntity implements IInventory{
 	}
 	  public void updateEntity()
       {
-		if (abc ==100){
+		if (abc == 100){
 			
 			if (canPress()){
 				pressItem();
+				System.out.println("Its 100");
 				
 			}
 			abc=0;

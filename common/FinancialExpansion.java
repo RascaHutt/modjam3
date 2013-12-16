@@ -145,6 +145,15 @@ public class FinancialExpansion {
 		 GameRegistry.registerTileEntity(StockTraderTile.class, "StockTraderTile");
 		networkRegisters();
 		
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blockbankATM, 1),
+				new Object[]{
+			"cbc",
+			"cdc",
+			"cbc",
+			'c', FinancialExpansion.itemnickelCoin,
+			'd', FinancialExpansion.itembankCard,
+			'b', FinancialExpansion.blocknickelBlock,
+		});
 		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blocknickelBlock, 1),
 				new Object[]{
 			"nnn",
@@ -178,6 +187,24 @@ public class FinancialExpansion {
 			'n', FinancialExpansion.itemnickelCoin,
 			'c', FinancialExpansion.itemchipPart, 
 			'd', Item.diamond,
+		});
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blockstockTrader, 1),
+				new Object[]{
+			"ccc",
+			"bab",
+			"ccc",
+			'a', FinancialExpansion.blockstockViewer,
+			'b', FinancialExpansion.blocknickelBlock,
+			'c', FinancialExpansion.itemnickelCoin,
+		});
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.blockstockViewer, 1),
+				new Object[]{
+			"ccc",
+			"bab",
+			"ccc",
+			'a', FinancialExpansion.blockbankATM,
+			'b', FinancialExpansion.blocknickelBlock,
+			'c', FinancialExpansion.itemnickelCoin,
 		});
 	}
 	
