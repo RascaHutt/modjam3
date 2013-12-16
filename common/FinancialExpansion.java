@@ -26,7 +26,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import assets.modjam3.common.*;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrader","stockviewer"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"stocktrader","stockviewer","balanceupdate","stockclient"}, packetHandler = PacketHandler.class)
 public class FinancialExpansion {
 	@Instance(Reference.MOD_ID)
 	public static FinancialExpansion instance;
@@ -97,7 +97,9 @@ public class FinancialExpansion {
 		
 		 market  = new MarketManager();
 		VillagerRegistry.instance().registerVillagerId(100);
+		if (event.getSide().isClient()){
 		VillagerRegistry.instance().registerVillagerSkin(100, DefaultProps.BANKER_SKIN);
+		}
 		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
 		VillagerRegistry.instance().registerVillageTradeHandler(100, bankerTradeHandler);
 		

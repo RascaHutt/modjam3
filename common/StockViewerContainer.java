@@ -1,11 +1,18 @@
 package assets.modjam3.common;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.util.Random;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet250CustomPayload;
 
 public class StockViewerContainer extends Container{
 protected StockViewerTile tile_entity;
@@ -95,7 +102,8 @@ protected StockViewerTile tile_entity;
 					  return null;
 			  if(tile_entity.getStackInSlot(0).getItem()==FinancialExpansion.itembankCard){
 				if   (tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")>=tile_entity.getStackInSlot(par1).getItemDamage()){
-		  tile_entity.getStackInSlot(0).stackTagCompound.setInteger("balance", tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")-tile_entity.getStackInSlot(par1).getItemDamage());
+		 int bal=tile_entity.getStackInSlot(0).stackTagCompound.getInteger("balance")-tile_entity.getStackInSlot(par1).getItemDamage();
+					tile_entity.getStackInSlot(0).stackTagCompound.setInteger("balance",bal );
 					ItemStack stack =tile_entity.getStackInSlot(par1);
 		  stack.setItemDamage(0);
 		  stack.stackTagCompound=null;
@@ -105,9 +113,30 @@ protected StockViewerTile tile_entity;
 		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(par1,null);
 		  par4EntityPlayer.worldObj.markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
-		 
+			PacketDispatcher.sendPacketToServer(packet(bal));
 		  }}}}
 		  return null;
 	    }
-	    
+	 public Packet packet(int balance){
+			Random random = new Random();
+			
+
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+			DataOutputStream outputStream = new DataOutputStream(bos);
+			try {
+			   
+			       outputStream.writeInt(tile_entity.xCoord);
+			       outputStream.writeInt(tile_entity.yCoord);
+			       outputStream.writeInt(tile_entity.zCoord);
+			       outputStream.writeInt(balance);
+			} catch (Exception ex) {
+			        ex.printStackTrace();
+			}
+
+			Packet250CustomPayload packet = new Packet250CustomPayload();
+			packet.channel = "balanceupdate";
+			packet.data = bos.toByteArray();
+			packet.length = bos.size();
+			return packet;
+		}
 }

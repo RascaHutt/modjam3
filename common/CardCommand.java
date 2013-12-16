@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatMessageComponent;
 
 public class CardCommand implements ICommand {
@@ -51,6 +52,9 @@ public class CardCommand implements ICommand {
 		ItemStack stack = icommandsender.getEntityWorld().getPlayerEntityByName(icommandsender.getCommandSenderName()).getCurrentEquippedItem();
 		if (stack.getItem() instanceof ItemBankCard){
 			if (Integer.valueOf(astring[0])>=0){
+				if (stack.stackTagCompound==null){
+					stack.stackTagCompound =(new NBTTagCompound( ) );
+				}
 		stack.stackTagCompound.setInteger("balance", Integer.valueOf(astring[0]));
 		icommandsender.getEntityWorld().getPlayerEntityByName(icommandsender.getCommandSenderName()).getCurrentEquippedItem();
     	chat.addText("Balance set to" + astring[0]);

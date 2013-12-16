@@ -52,10 +52,14 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 		listings[b].z=z;
 		listings[b].world = world;
 		listings[b].ID = ID;
+		if (world.isRemote==false){
+		
+			PacketDispatcher.sendPacketToAllPlayers(packet2(x,y,z,ID,"stockclient", price, offer.stackSize, player, buy, offer.itemID));
+		}
 	}
 	public void completeTrade(int id){
 		if (listings[id]!=null){
-		PacketDispatcher.sendPacketToServer(packet(listings[id].x,listings[id].y,listings[id].z,listings[id].ID));
+		PacketDispatcher.sendPacketToServer(packet(listings[id].x,listings[id].y,listings[id].z,listings[id].ID,"stockviewer"));
 		//tile.completeTrade(listings[id].ID);
 		}
 		listings[id] =null;
@@ -72,7 +76,7 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 		return 200;
 	}
 	
-	public Packet packet(int x,int y,int z,int id){
+	public Packet packet(int x,int y,int z,int id,String channel){
 
 		
 
@@ -90,7 +94,36 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 		}
 
 		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = "stockviewer";
+		packet.channel = channel;
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		return packet;
+	}
+	public Packet packet2(int x,int y,int z,int id,String channel,int price,int amount,String player2,Boolean buy,int itemid){
+
+		
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+		DataOutputStream outputStream = new DataOutputStream(bos);
+		try {
+		   
+		       outputStream.writeInt(x);
+		       outputStream.writeInt(y);
+		       outputStream.writeInt(z);
+		       outputStream.writeInt(id);
+		       outputStream.writeInt(itemid );
+		       outputStream.writeInt(amount );
+		       outputStream.writeInt(price );
+		       outputStream.writeBoolean(buy);
+		       outputStream.writeUTF(player2);
+		
+		       
+		} catch (Exception ex) {
+		        ex.printStackTrace();
+		}
+
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = channel;
 		packet.data = bos.toByteArray();
 		packet.length = bos.size();
 		return packet;
