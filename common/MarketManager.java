@@ -58,13 +58,17 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 			PacketDispatcher.sendPacketToAllPlayers(packet2(x,y,z,ID,"stockclient", price, offer.stackSize, player, buy, offer.itemID));
 		}}
 	}
-	public void completeTrade(int id){
+	public void completeTrade(int id,int balance){
 		if (listings[id]!=null){
-		//PacketDispatcher.sendPacketToServer(packet(listings[id].x,listings[id].y,listings[id].z,listings[id].ID,"stockviewer"));
+		//PacketDispatcher.sendPacketToServer(packet3(listings[id].x,listings[id].y,listings[id].z,balance));
+		updateCard(listings[id].x,listings[id].y,listings[id].z,balance);
 		//tile.completeTrade(listings[id].ID);
 		}
 		listings[id] =null;
 		
+	}
+	public void updateCard(int x,int y,int z ,int balance){
+		PacketDispatcher.sendPacketToAllPlayers(packet3(x,y,z,balance));
 	}
 	public int counter(){
 		int i=0;
@@ -129,5 +133,28 @@ public void listTrade(ItemStack offer,int price,Boolean buy,String player,int x,
 		packet.length = bos.size();
 		return packet;
 	}
+	  public Packet packet3(int x,int y,int z, int balance){
+			Random random = new Random();
+			
 
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+			DataOutputStream outputStream = new DataOutputStream(bos);
+			try {
+			   
+			      
+			       outputStream.writeInt(x);
+			       outputStream.writeInt(y);
+			       outputStream.writeInt(z);
+			       outputStream.writeInt(balance);
+			} catch (Exception ex) {
+			        ex.printStackTrace();
+			}
+
+			Packet250CustomPayload packet = new Packet250CustomPayload();
+			packet.channel = "traderbalance";
+			packet.data = bos.toByteArray();
+			packet.length = bos.size();
+			return packet;
+		}
+	  
 }

@@ -170,9 +170,9 @@ public class StockViewerTile extends TileEntity implements IInventory{
 		i++;
 		}}
       }
-	  public void unList(int slot){
+	 /* public void unList(int slot){
 		  FinancialExpansion.instance.market.completeTrade(slot-2);
-	  }
+	  }*/
 @Override
 public ItemStack decrStackSize(int slotIndex, int amount) {
 	// TODO Auto-generated method stub

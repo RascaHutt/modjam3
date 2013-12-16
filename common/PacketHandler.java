@@ -173,7 +173,7 @@ System.out.println(xx);
     
 DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 World world = player.worldObj;
-if (world.isRemote == true)
+
  System.out.println("yes");
 int xx;
 int yy;

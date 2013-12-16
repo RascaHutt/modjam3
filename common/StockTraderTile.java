@@ -22,7 +22,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	public int balance=0;
 	int abc = 0;
 	public StockTraderTile(){
-		 this.inventory = new ItemStack[1];
+		 this.inventory = new ItemStack[2];
 		}
 		@Override
 		public int getSizeInventory() {
@@ -41,7 +41,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 			
 			listings[b].items = offer;
 			listings[b].price =price;
-			listings[b].buy = buy;
+			listings[b].buy= buy;
 			listings[b].username =player.username;
 			if (player.worldObj.isRemote!=true){
 			FinancialExpansion.instance.market.listTrade(offer, price, buy, player.username,this.xCoord,this.yCoord,this.zCoord,this.worldObj,b);
@@ -50,7 +50,7 @@ public class StockTraderTile extends TileEntity implements IInventory{
 		public void completeTrade(int id){
 			balance = balance + listings[id].price;
 			listings[id] =null;
-			PacketDispatcher.sendPacketToAllPlayers(packet());
+			
 			
 		
 		}
@@ -234,7 +234,14 @@ public class StockTraderTile extends TileEntity implements IInventory{
 	
 		  public void updateEntity()
 	      {
-			
+			  if(this.getStackInSlot(1)!=null){
+			if (this.balance>0&& this.getStackInSlot(1).getItem()instanceof ItemBankCard){
+				
+				this.getStackInSlot(1).stackTagCompound.setInteger("balance", this.getStackInSlot(1).stackTagCompound.getInteger("balance")+this.balance);
+				this.balance=0;
+				FinancialExpansion.instance.market.updateCard(this.xCoord,this.yCoord,this.zCoord, balance);
+			}
+			}
 	      }
 		  public void sellItems(){
 			  inventory[0] = null;

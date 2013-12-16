@@ -112,7 +112,7 @@ protected StockViewerTile tile_entity;
 		  stack.stackTagCompound=null;
 		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(1, stack);
-		  FinancialExpansion.instance.market.completeTrade(par1-2);
+		  FinancialExpansion.instance.market.completeTrade(par1-2,bal);
 		  tile_entity.bcd=true;
 		  tile_entity.setInventorySlotContents(par1,null);
 		  par4EntityPlayer.worldObj.markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
