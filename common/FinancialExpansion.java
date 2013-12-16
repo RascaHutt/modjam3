@@ -42,6 +42,7 @@ public class FinancialExpansion {
 	int nickelCoinID;
 	int bankCardID;
 	int bankAtmID;
+	int chipPartID;
 	public MarketManager market;
 	
 	
@@ -56,6 +57,7 @@ public class FinancialExpansion {
 	public static Item itemnickelIngot;
 	public static Item itemnickelCoin;
 	public static Item itembankCard;
+	public static Item itemchipPart;
 	
 	OreGeneration oregeneration = new OreGeneration();
 	
@@ -90,6 +92,7 @@ public class FinancialExpansion {
 	
 		nickelCoinID = config.get("Item IDs", "Nickel Coin ID", 1001).getInt();
 		bankCardID =config.get("Item IDs", "Bank Card ID", 1002).getInt();
+		chipPartID = config.get("Item IDs", "Chip Part ID", 1003).getInt();
 		
 	}
 	
@@ -132,6 +135,8 @@ public class FinancialExpansion {
 		registerItem(itemnickelCoin, "Nickel Coin", itemnickelCoin.getUnlocalizedName());
 		itembankCard = new ItemBankCard(bankCardID);
 		registerItem(itembankCard, "Bank Card", itembankCard.getUnlocalizedName());
+		itemchipPart = new ItemChipPart(chipPartID);
+		registerItem(itemchipPart, "Chip Part", itemchipPart.getUnlocalizedName());
 		
 		GameRegistry.addSmelting(nickelOreID, new ItemStack(itemnickelIngot, 1), 1F);
 		GameRegistry.registerWorldGenerator(oregeneration);
@@ -154,6 +159,24 @@ public class FinancialExpansion {
 			"ibi",
 			'i', Item.ingotIron,
 			'b', FinancialExpansion.blocknickelBlock, 
+			'd', Item.diamond,
+		});
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.itemchipPart, 2),
+				new Object[]{
+			"nrn",
+			"rdr",
+			"nrn",
+			'n', FinancialExpansion.itemnickelCoin,
+			'r', Item.redstone, 
+			'd', Item.diamond,
+		});
+		GameRegistry.addRecipe(new ItemStack(FinancialExpansion.itembankCard, 1),
+				new Object[]{
+			"ncn",
+			"dcd",
+			"ncn",
+			'n', FinancialExpansion.itemnickelCoin,
+			'c', FinancialExpansion.itemchipPart, 
 			'd', Item.diamond,
 		});
 	}
