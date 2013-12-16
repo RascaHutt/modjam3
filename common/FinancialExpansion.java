@@ -103,6 +103,7 @@ public class FinancialExpansion {
 		}
 		BankerTradeHandler bankerTradeHandler = new BankerTradeHandler();
 		VillagerRegistry.instance().registerVillageTradeHandler(100, bankerTradeHandler);
+		VillagerRegistry.instance().registerVillageCreationHandler(new VillageHandlerBank());
 		//Block
 		blockcoinPress = new BlockCoinPress(coinPressID);
 		registerBlock(blockcoinPress,"Coin Press", blockcoinPress.getUnlocalizedName());
